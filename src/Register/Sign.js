@@ -4,6 +4,9 @@ import closeIcon from "../img/close-icon.png"
 
 import {Link, useHistory} from "react-router-dom";
 import {Recovery} from "./Recovery";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../redux/action/auth";
+import Loader from "react-loader-spinner";
 
 
 export const Sign = props => {
@@ -12,9 +15,18 @@ export const Sign = props => {
     const [mail, setMail] = useState('');
     const [psw, setPsw] = useState('');
     const [isPswForgotten, setIsPswForgotten] = useState(false);
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(false);
 
+
+    const dispatch = useDispatch();
+
+    const signHandler = e => {
+        e.preventDefault();
+        setIsLoading(true);
+        dispatch(login(mail, psw));
+        setIsLoading(false);
+    }
 
     const fetchHandler = async () => {
         setIsLoading(true)
@@ -72,9 +84,24 @@ export const Sign = props => {
                                onChange={(e) => setPsw(e.target.value)}/>
                         <a onClick={() => setIsPswForgotten(true)}>Забыли?</a>
                     </div>
-                    <button className="sign__form__button">
-                        Войти
-                    </button>
+
+                    {isLoading
+                        ? <Loader
+                            style={{marginTop: "41px", marginBottom: "42px"}}
+                            type="TailSpin"
+                            color="#61A199"
+                            height={30}
+                            width={30}
+                            // timeout={3000} //3 secs
+                        />
+                        : <button
+                            className="sign__form__button"
+                            onClick={signHandler}
+                        >Войти
+                        </button>
+
+                    }
+
                 </form>
                 <div onClick={() => showSignHandler(false)}
                      className="reg-link">

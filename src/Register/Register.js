@@ -1,29 +1,29 @@
 import React, {useState} from "react"
-import {useHistory} from "react-router-dom"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 import calendarIcon from "../img/calendar-icon.svg"
 import eyeHiddenIcon from "../img/eye-icon.svg"
 import eyeIcon from "../img/eye-open-icon.svg"
 
+
 import Loader from "react-loader-spinner";
+import {useDispatch} from "react-redux";
 
 
-export const Register = () => {
-    let history = useHistory()
+export const Register = props => {
 
-    const [birthDate, setBirthDate] = useState('');
-    const [datePassport, setDatePassport] = useState('');
-    const [dateLicence, setDateLicence] = useState('')
-    const [name, setName] = useState('')
-    const [mail, setMail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [numPassport, setNumPassport] = useState('')
-    const [orgPassport, setOrgPassport] = useState('')
-    const [codePassport, setCodePassport] = useState('')
-    const [numLicence, setNumLicence] = useState('')
-    const [password, setPassword] = useState('')
-    const [repeatPassword, setRepeatPassword] = useState('')
+    const [birthDate, setBirthDate] = useState(props.initialState.birthDate || '');
+    const [datePassport, setDatePassport] = useState(props.initialState.datePassport || '');
+    const [dateLicence, setDateLicence] = useState(props.initialState.dateLicence || '')
+    const [name, setName] = useState(props.initialState.name || '');
+    const [mail, setMail] = useState(props.initialState.mail || '');
+    const [phone, setPhone] = useState(props.initialState.phone || '');
+    const [numPassport, setNumPassport] = useState(props.initialState.numPassport || '');
+    const [orgPassport, setOrgPassport] = useState(props.initialState.orgPassport || '');
+    const [codePassport, setCodePassport] = useState(props.initialState.codePassport || '');
+    const [numLicence, setNumLicence] = useState(props.initialState.birthDate || '');
+    const [password, setPassword] = useState(props.initialState.password || '');
+    const [repeatPassword, setRepeatPassword] = useState(props.initialState.repeatPassword || '')
     const [isHiddenPsw, setIsHiddenPsw] = useState(true)
     const [isHiddenRePsw, setIsHiddenRePsw] = useState(true)
     const [isRepeatPasswordError, setIsRepeatPasswordError] = useState(false)
@@ -35,6 +35,7 @@ export const Register = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [servererror, setServerError] = useState(false)
 
+    const dispatch = useDispatch();
 
     const checkPasswordRepeat = () => {
         setIsHiddenRePsw(true)
@@ -47,27 +48,28 @@ export const Register = () => {
         setIsHiddenPsw(true)
     }
 
-    const fetchHandler = async () => {
-        setIsLoading(true)
-        const response = await applyInfo()
-        if (response.ok) {
-            setIsLoading(false)
-            const data = await response.json()
-            console.log(data)
-            localStorage.setItem("accessToken", data.accessToken)
-            localStorage.setItem("refreshToken", data.refreshToken)
-            localStorage.setItem("payload", JSON.stringify(data.payload))
-            //history.push('/register/2') // в случае успеха
-            history.push('/') // в случае успеха временно без страниц 2 и 3
-        } else {
-            setServerError(true)
-            setIsLoading(false)
-            setTimeout(() => setServerError(false), 3000)
+    const fetchHandler = () => {
+        setIsLoading(true);
+
+        const userData = {
+            name, mail, phone,
+            birth_date: birthDate,
+            passport_number: numPassport,
+            passport_date: datePassport,
+            passport_vendor: orgPassport,
+            passport_code: codePassport,
+            licence_number: numLicence,
+            licence_date: dateLicence,
+            password
         }
+        props.confirmUserData(userData);
+
+        setIsLoading(false);
+        props.stepForward();
     }
 
     async function applyInfo() {
-        const response = await fetch('http://localhost:8000/users', {
+        const response = await fetch('http://localhost:8000/auth/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -193,7 +195,7 @@ export const Register = () => {
                 </label>
 
             </form>
-            <div className="register__footer">
+            <div className="register__footer  lineTop">
                 <button
                     onClick={fetchHandler}
                     disabled={

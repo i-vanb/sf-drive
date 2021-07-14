@@ -1,99 +1,62 @@
 import React, {useState} from "react"
-import {useHistory} from "react-router-dom"
-import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
-import calendarIcon from "../img/calendar-icon.svg"
-import eyeHiddenIcon from "../img/eye-icon.svg"
-import eyeIcon from "../img/eye-open-icon.svg"
+import back from "../img/back.svg"
 
 import Loader from "react-loader-spinner";
 
 
-export const RegStep2 = () => {
-    let history = useHistory()
-    const [photoUrl, setPhotoUrl] = useState('')
+export const RegStep2 = props => {
+    const [photoUrl, setPhotoUrl] = useState(props.initialState || undefined);
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [servererror, setServerError] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+    const [servererror, setServerError] = useState(false);
 
 
     const fetchHandler = () => {
-        history.push('/register/3')
-        //
-        // return null
-        // // here is the place for validation
-        //
-        // setIsLoading(true)
-        // applyInfo().then((data) => {
-        //     setIsLoading(false)
-        //
-        //     console.log(data)
-        // }).catch(()=> {
-        //     setServerError(true)
-        //     setIsLoading(false)
-        //     setTimeout(()=>setServerError(false), 3000)
-        // })
+        // setIsLoading(true);
+        props.confirmUserPhoto(photoUrl);
+        // setIsLoading(false);
+        props.stepForward();
     }
 
-    async function applyInfo() {
-        // const response = fetch('http://localhost:8000/users', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         name, mail, phone,
-        //         birth_date: birthDate,
-        //         passport_number: numPassport,
-        //         passport_date: datePassport,
-        //         passport_vendor: orgPassport,
-        //         passport_code: codePassport,
-        //         licence_number: numLicence,
-        //         licence_date: dateLicence,
-        //         password
-        //     })
-        // })
-        // return await response
-        return null
-    }
 
     return (
         <main className="register">
             <div className="register__header">
+                <div className="register__step-back" onClick={props.stepBack}>
+                    <img src={back}/>
+                    <span>Назад</span>
+                </div>
                 <div className="register__header__pageNumber">Шаг 2 из 3</div>
                 <h1 className="register__header__title">Загрузите селфи</h1>
             </div>
-            <form className="register__form">
+            <form className="register__form photo_input">
                 <h2 className="register__title">Смотрите прямо в камеру, без солнцезащитных очков и головных уборов.</h2>
 
 
-                <label className="register__blockInput">
-                    <input type="file" value=""
-                           // onChange={(e) => setName(e.target.value)}
+                <label className="">
+                    {/*<div style={{ position: "relative", width: "fit-content", height: "fit-content", margin: "0 auto" }}>*/}
+                        <input type="file" className=""
+                           onChange={(e) => {
+                               const binaryData = [];
+                               binaryData.push(e.target.files[0]);
+                               // window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
+                               setPhotoUrl(URL.createObjectURL(new Blob(binaryData, {type: "application/zip"})));
+                               // setPhotoUrl(URL.createObjectURL(e.target.files[0]));
+                           }}
                     />
+
+                    {/*</div>*/}
                 </label>
+                <div className="imageWrapper">
+                    <img src={photoUrl}/>
+                </div>
 
 
 
             </form>
             <div className="register__footer">
-                <button
-                    onClick={fetchHandler}
-                //     disabled={
-                //     birthDate === ''
-                //     || datePassport === ''
-                //     || dateLicence === ''
-                //     || name === ''
-                //     || mail === ''
-                //     || phone === ''
-                //     || numPassport === ''
-                //     || orgPassport === ''
-                //     || codePassport === ''
-                //     || numLicence === ''
-                //     || password === ''
-                //     || repeatPassword === ''
-                // }
-                >
+                <button onClick={fetchHandler}>
                     {isLoading
                         ? <Loader
                             type="TailSpin"
@@ -107,7 +70,7 @@ export const RegStep2 = () => {
                     }
                 </button>
             </div>
-            {true &&
+            {false &&
                 <div className="server-error">
                     <span>Не удалось продолжить регистрацию. Попробуйте ещё раз</span>
                 </div>}

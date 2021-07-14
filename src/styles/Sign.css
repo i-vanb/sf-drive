@@ -27,7 +27,8 @@
 .close-icon {
     position: absolute;
     right: 25px;
-    top: 25px
+    top: 25px;
+    cursor: pointer;
 }
 .back-icon {
     position: absolute;
@@ -167,6 +168,7 @@
     font-size: 14px;
     color: #508E87;
     text-decoration: none;
+    cursor: pointer;
 }
 .errorSign {
     position: absolute;

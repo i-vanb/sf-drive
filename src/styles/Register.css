@@ -6,9 +6,24 @@
     display: block;
     position: relative;
 }
-
+.register__photo-container {
+    width: 500px!important;
+    height: 300px!important;
+    margin: 0 auto;
+}
 .register__header {
     text-align: center;
+    position: relative;
+    margin-top: 50px;
+}
+.register__step-back span {
+    color: #61A199;
+    margin-left: 20px;
+}
+.register__step-back {
+    position: absolute;
+    top: 0;
+    left: 50px;
 }
 
 .register__form {
@@ -35,6 +50,7 @@
     font-size: 36px;
     line-height: 53px;
     margin: 0 0 44px;
+    text-align: center;
 }
 
 .register__blockInput {
@@ -84,10 +100,13 @@
     color: #E0E0E0
 }
 
+.lineTop{
+    border-top: #E0E0E0 1px solid;
+}
 .register__footer {
     height: 84px;
     width: 100%;
-    border-top: #E0E0E0 1px solid;
+    /*border-top: #E0E0E0 1px solid;*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,13 +141,14 @@
 }
 
 @media screen and (max-width: 768px) {
-    .register__footer button, .register__blockInput > input, .register input.w100, .react-datepicker-wrapper {
+    .register__footer button, .register__success button, .register__blockInput > input, .register input.w100, .react-datepicker-wrapper {
         /*width: 100%;*/
         flex: 1;
     }
 
 
-    .register__footer button {
+    .register__footer button,
+    .register__success button {
         margin: 0 20px;
     }
 
@@ -234,4 +254,48 @@
         width: 100%;
         margin-bottom: 40px;
     }
+}
+
+.register__success {
+    height: 84px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.register__success button {
+    border: none;
+    width: 176px;
+    height: 51px;
+    background: #61A199;
+    border-radius: 6px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #ffffff;
+    outline: none;
+}
+
+.register__success button:disabled {
+    background: #E6E6E6;
+    color: #B4B5BD;
+}
+.imageWrapper{
+    background-color: black;
+    width: 300px;
+    height: 300px;
+    margin: 10px auto 50px;
+    text-align: center;
+}
+
+.imageWrapper img {
+    max-width: -webkit-fill-available;
+    max-height: -webkit-fill-available;
+}
+.photo_input {
+    text-align: center;
 }
