@@ -1,0 +1,17 @@
+type Car {
+    _id: ID!
+    ownerId: String!
+    name: String!
+    year: Int!
+    shortRent: Int!
+    midRent: Int!
+    longRent: Int!
+    type: String!
+    drive: String!
+    transmission: String!
+    engine: String!
+    run: Int!
+    imgSM: String
+    options: String
+    photos: String
+}

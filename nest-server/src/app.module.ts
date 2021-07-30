@@ -3,9 +3,12 @@ import {AppController} from './app.controller';
 import {AppService} from './app.service';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {AuthModule} from "./Auth/auth.module";
+import {GraphQLModule} from "@nestjs/graphql";
+import {CarModule} from "./Cars/car.module";
 
 @Module({
     imports: [
+        CarModule,
         TypeOrmModule.forRoot({
             name: 'default',
             type: "mongodb",
@@ -18,7 +21,14 @@ import {AuthModule} from "./Auth/auth.module";
                 `${__dirname}/**/*.entity.{ts,js}`
             ]
         }),
-        AuthModule
+        AuthModule,
+        GraphQLModule.forRoot({
+            autoSchemaFile: 'schema.gql'
+            // typePaths: ['./**/*.graphql'],
+            // definitions: {
+            //     path: join(process.cwd(), '/src/graphql.ts')
+            // }
+        })
     ],
     controllers: [AppController],
     providers: [AppService]
