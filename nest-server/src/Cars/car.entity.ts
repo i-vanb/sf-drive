@@ -1,87 +1,138 @@
-import {Column, Entity, ObjectID, ObjectIdColumn} from "typeorm";
+import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 import {Field, ID, ObjectType} from "@nestjs/graphql";
 
 
 @Entity()
-@ObjectType()
+// @ObjectType()
 export class CarsEntity {
     constructor(
-        ownerId, name, year, shortRent, midRent, longRent,
-        type, drive, transmission, engine, run, imgSM, options, photos
+        ownerId, mark, model, number, year, color, vin, engine_type,
+        volume, power_ls, power_kvt, transmission, run, pts, sts,
+        price, price_3d, price_5d
+        // type, drive,  imgSM, options, photos,
     ) {
-        this.name = name
+        this.mark = mark
+        this.model = model
+        this.number = number
         this.ownerId = ownerId
         this.year = year
-        this.shortRent = shortRent
-        this.midRent = midRent
-        this.longRent = longRent
-        this.type = type
-        this.drive = drive
+        this.color = color
+        this.vin = vin
+        this.engine_type = engine_type
+        this.volume = volume
+        this.power_ls = power_ls
+        this.power_kvt = power_kvt
         this.transmission = transmission
-        this.engine = engine
         this.run = run
-        this.imgSM = imgSM
-        this.options = options
-        this.photos = photos
+        this.pts = pts
+        this.sts = sts
+        this.price = price
+        this.price_3d = price_3d
+        this.price_5d = price_5d
+
+        // this.type = type
+        // this.drive = drive
+        // this.imgSM = imgSM
+        // this.options = options
+        // this.photos = photos
     }
 
-    @Field(type => ID)
-    @ObjectIdColumn()
-    _id: ObjectID;
+    // @Field(type => ID)
+    // @ObjectIdColumn()
+    @PrimaryGeneratedColumn()
+    id: number
 
-    @Field()
+    // @Field()
     @Column()
-    ownerId: string
+    ownerId: number
 
-    @Field()
+    // @Field()
     @Column()
-    name: string;
+    number: string
 
-    @Field()
+    // @Field()
+    @Column()
+    pts: string
+
+    // @Field()
+    @Column()
+    sts: string
+
+    // @Field()
+    @Column()
+    power_ls: string
+
+    // @Field()
+    @Column()
+    power_kvt: string
+
+    // @Field()
+    @Column()
+    mark: string;
+
+    // @Field()
+    @Column()
+    model: string;
+
+   // @Field()
+    @Column()
+    vin: string;
+
+    // @Field()
+    @Column()
+    color: string;
+
+    // @Field()
+    @Column()
+    volume: string;
+
+    // @Field()
     @Column()
     year: number;
 
-    @Field()
+    // @Field()
     @Column()
-    shortRent: number;
+    price: number;
 
-    @Field()
+    // @Field()
     @Column()
-    midRent: number;
+    price_3d: number;
 
-    @Field()
+    // @Field()
     @Column()
-    longRent: number;
+    price_5d: number;
 
-    @Field()
-    @Column()
-    type: string;
-
-    @Field()
-    @Column()
-    drive: string;
-
-    @Field()
+    // @Field()
     @Column()
     transmission: string;
 
-    @Field()
+    // @Field()
     @Column()
-    engine: string;
+    engine_type: string;
 
-    @Field()
+    // @Field()
     @Column()
     run: number;
 
-    @Field()
-    @Column()
-    imgSM?: string;
 
-    @Field()
-    @Column()
-    options?: string;
-
-    @Field()
-    @Column()
-    photos?: string;
 }
+
+
+//// @Field()
+//     @Column()
+//     imgSM?: string;
+//
+//     // @Field()
+//     @Column()
+//     options?: string;
+//
+//     // @Field()
+//     @Column()
+//     photos?: string;
+//// @Field()
+//     @Column()
+//     type: string;
+//
+//     // @Field()
+//     @Column()
+//     drive: string;

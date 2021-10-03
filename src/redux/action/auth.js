@@ -1,16 +1,25 @@
 import {SET_AUTHORIZED, SET_SIGN_UP_ERROR} from "../constant";
-import axios from "axios";
+import {fetchData} from "../../api";
+import {setLoading} from "./system";
 
-export const login = (mail, password) => dispatch => {
-    axios.post(
-        "http://localhost:8000/auth/login", {mail, password})
-        .then(res => {
-            const tokenPair = {accessToken: res.data.accessToken, refreshToken: res.data.refreshToken};
-            const userData = {userName: res.data.userName, userID: res.data.userID};
-            setTokenPair(tokenPair);
-            dispatch(setAuthorized(true, userData));
-        })
-        .catch(err => console.log(err))
+
+export const login = (mail, password) => async dispatch => {
+    const res = await fetchData({
+        method: "post",
+        url: "http://localhost:8000/auth/login",
+        options: {mail, password},
+        dispatch
+    })
+    console.log(res)
+    if (res.status === 201) {
+        const tokenPair = {accessToken: res.data.accessToken, refreshToken: res.data.refreshToken};
+        const userData = {userName: res.data.userName, userID: res.data.userID};
+        setTokenPair(tokenPair);
+        dispatch(setAuthorized(true, userData));
+    } else {
+        dispatch(setSignUpError(res.data.message))
+    }
+
 }
 
 
@@ -23,31 +32,42 @@ export const setAuthorized = (isAuth = true, user) => ({type: SET_AUTHORIZED, pa
 
 export const setSignUpError = error => ({type: SET_SIGN_UP_ERROR, payload: {error}})
 
-export const authMe = () => dispatch => {
+export const authMe = () => async dispatch => {
     let accessToken = localStorage.getItem("accessToken");
     if(!accessToken) return;
 
-    axios.post(
-        "http://localhost:8000/auth/me", {"accessToken": accessToken})
-        .then(({data}) => {
-            dispatch(setAuthorized(true, data))
-        })
-        .catch(() => dispatch(refreshMe()))
+    const res = await fetchData({
+        method: "post",
+        url: "http://localhost:8000/auth/me",
+        options: {"accessToken": accessToken},
+        dispatch
+    })
+
+    if(res.status === 201 || res.status === 200) {
+        dispatch(setAuthorized(true, res.data))
+    } else {
+        dispatch(refreshMe())
+    }
 }
 
-export const refreshMe = () => dispatch => {
+export const refreshMe = () => async dispatch => {
     let refreshToken = localStorage.getItem("refreshToken");
     if(!refreshToken) return;
 
-    axios.post(
-        "http://localhost:8000/auth/me/refresh", {"refreshToken": refreshToken})
-        .then(res => {
-            const tokenPair = {accessToken: res.data.accessToken, refreshToken: res.data.refreshToken}
-            const userData = {userName: res.data.userName, userID: res.data.userID}
-            setTokenPair(tokenPair);
-            dispatch(setAuthorized(true, userData));
-        })
-        .catch(err => console.warn(err))
+    const res = await fetchData({
+        method: "post",
+        url: "http://localhost:8000/auth/me/refresh",
+        options: {"refreshToken": refreshToken},
+        dispatch
+    })
+    if(res.status === 201 || res.status === 200) {
+        const tokenPair = {accessToken: res.data.accessToken, refreshToken: res.data.refreshToken}
+        const userData = {userName: res.data.userName, userID: res.data.userID}
+        setTokenPair(tokenPair);
+        dispatch(setAuthorized(true, userData));
+    } else {
+
+    }
 }
 
 export const setTokenPair = tokenPair => {
@@ -60,29 +80,37 @@ export const resetTokenPair = () => {
     localStorage.setItem("refreshToken", "");
 }
 
-//             name, mail, phone,
-//             birth_date: birthDate,
-//             passport_number: numPassport,
-//             passport_date: datePassport,
-//             passport_vendor: orgPassport,
-//             passport_code: codePassport,
-//             licence_number: numLicence,
-//             licence_date: dateLicence,
-//             password
+export const signUp = user => async dispatch => {
+    dispatch(setLoading())
+    const res = await fetchData({
+        method: "post",
+        url: "http://localhost:8000/auth/signup",
+        options: user,
+        dispatch
+    })
+    if(res.status === 201 || res.status === 200) {
+        const tokenPair = {accessToken: res.data.accessToken, refreshToken: res.data.refreshToken}
+        const userData = {userName: res.data.userName, userID: res.data.userID}
+        setTokenPair(tokenPair);
+        dispatch(setAuthorized(true, userData));
+        dispatch(setSignUpError(""));
+    } else {
+        dispatch(setSignUpError("Ошибка сервера"))
+    }
 
-export const signUp = user => dispatch => {
-    axios.post(
-        "http://localhost:8000/auth/signup", user)
-        .then(res => {
-            const tokenPair = {accessToken: res.data.accessToken, refreshToken: res.data.refreshToken}
-            const userData = {userName: res.data.userName, userID: res.data.userID}
-            setTokenPair(tokenPair);
-            console.log(tokenPair, userData)
-            dispatch(setAuthorized(true, userData));
-            dispatch(setSignUpError(""));
-        })
-        .catch(err => {
-            console.dir(err)
-            dispatch(setSignUpError("Ошибка сервера"))
-        })
+
+    // axios.post(
+    //     "http://localhost:8000/auth/signup", user)
+    //     .then(res => {
+    //         const tokenPair = {accessToken: res.data.accessToken, refreshToken: res.data.refreshToken}
+    //         const userData = {userName: res.data.userName, userID: res.data.userID}
+    //         setTokenPair(tokenPair);
+    //         console.log(tokenPair, userData)
+    //         dispatch(setAuthorized(true, userData));
+    //         dispatch(setSignUpError(""));
+    //     })
+    //     .catch(err => {
+    //         console.dir(err)
+    //         dispatch(setSignUpError("Ошибка сервера"))
+    //     })
 }

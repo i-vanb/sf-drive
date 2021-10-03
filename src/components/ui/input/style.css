@@ -1,0 +1,52 @@
+.input__container{
+    position: relative;
+    flex: 1;
+    font-size: 13px;
+    margin-bottom: 35px;
+}
+.input__wrapper{
+    position: relative;
+}
+.input{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 6px;
+    font-size: inherit;
+    outline: none;
+}
+.input::placeholder{
+    color: #E0E0E0;
+    font-weight: 400;
+    font-size: inherit;
+}
+.input__error{
+    position: absolute;
+    right: 3px;
+    top: 100%;
+    color: red;
+    font-style: italic;
+    line-height: 1.5;
+
+}
+.input__popup-list{
+    box-shadow: 0 3px 5px grey;
+    margin: 0 3px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #fff;
+}
+.input__popup-list__item{
+    padding: 5px 10px;
+    font-size: 13px;
+    color: #4F4F4F;
+}
+.input__popup-list__item:hover{
+    background-color: rgba(0,0,0, .1);
+}

@@ -16,14 +16,13 @@ export class AuthService {
 
     async signUp(user: User) {
         // throw new HttpException('Mail is already exist', HttpStatus.CONFLICT);
-
         const isUserExists = await this.userService.findByMail(user.mail);
         if(isUserExists) throw new HttpException('Mail is already exist', HttpStatus.CONFLICT);
-
+        // console.log(user)
         const newUser = await this.userService.create(user);
         const payload = {
             userName: newUser.name,
-            userID: newUser._id
+            userID: newUser.id
         }
         const tokenData = await this.tokenService.createPair(payload);
         return {...payload, ...tokenData}
@@ -34,7 +33,7 @@ export class AuthService {
         if(!user) throw new HttpException('User is not found', HttpStatus.NOT_FOUND)
         if(userData.password !== user.password) throw new HttpException('Password is incorrect', HttpStatus.NOT_ACCEPTABLE)
         // return await this.tokenService.createPair({userName: user.name, userID: user._id})
-        const payload = {userName: user.name, userID: user._id}
+        const payload = {userName: user.name, userID: user.id}
         const tokenData = await this.tokenService.createPair(payload);
         return {...payload, ...tokenData}
     }

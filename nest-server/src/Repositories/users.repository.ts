@@ -1,31 +1,34 @@
 import {Injectable} from "@nestjs/common";
 import {UserEntity} from "../User/user.entity";
-import {getMongoRepository, ObjectID} from "typeorm";
+import {Repository} from "typeorm";
+import {InjectRepository} from "@nestjs/typeorm";
 
 @Injectable()
 export class UsersRepository {
+    constructor(
+        @InjectRepository(UserEntity)
+        private userRepository: Repository<UserEntity>
+    ) {}
+
     async createUser(user: UserEntity) {
-        const repository = getMongoRepository(UserEntity)
-        return await repository.save(user)
+        const newUser = await this.userRepository.create(user)
+        return await this.userRepository.save(newUser)
     }
 
-    async update(user: UserEntity) {
-        const repository = getMongoRepository(UserEntity)
-        return await repository.save(user)
+    async update(update: UserEntity) {
+        return await this.userRepository.save(update)
     }
 
     async findUser(mail: string) {
-        const repository = getMongoRepository(UserEntity)
-        return await repository.findOne( {mail:mail})
+        return await this.userRepository.findOne({mail: mail})
     }
 
     async getUsers() {
-        const repository = getMongoRepository(UserEntity)
-        return await repository.find()
+        return await this.userRepository.find()
     }
 
-    async removeUser(id: ObjectID) {
-        const repository = getMongoRepository(UserEntity)
-        return await repository.delete(id)
+    async removeUser(id: number) {
+        const user = await this.userRepository.findByIds([id])
+        return await this.userRepository.remove(user)
     }
 }

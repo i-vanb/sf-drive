@@ -18,7 +18,7 @@ export class TokenController {
     //
     @Post("dec")
     decode(@Body() payload) {
-        console.log(payload)
+        // console.log(payload)
         return this.tokenService.decodeToken(payload.token)
     }
 

@@ -1,29 +1,33 @@
-import React, {useState} from "react"
+import React from "react"
 import "react-datepicker/dist/react-datepicker.css";
 import back from "../img/back.svg"
 
-import Loader from "react-loader-spinner";
+import {useDispatch, useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
+import {setUserData} from "../redux/action/user";
 
 
-export const RegStep2 = props => {
-    const [photoUrl, setPhotoUrl] = useState(props.initialState || undefined);
+export const RegStep2 = () => {
+    const photo = useSelector(state => state.user.photo)
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [servererror, setServerError] = useState(false);
+    console.log(photo)
+    const dispatch = useDispatch();
+    const history = useHistory()
 
-
-    const fetchHandler = () => {
-        // setIsLoading(true);
-        props.confirmUserPhoto(photoUrl);
-        // setIsLoading(false);
-        props.stepForward();
+    const nextHandler = () => {
+        // some checking
+        history.push('/register/3')
     }
 
+    const backHandler = () => {
+        // some checking
+        history.push('/register/1')
+    }
 
     return (
         <main className="register">
             <div className="register__header">
-                <div className="register__step-back" onClick={props.stepBack}>
+                <div className="register__step-back" onClick={backHandler}>
                     <img src={back}/>
                     <span>Назад</span>
                 </div>
@@ -32,48 +36,24 @@ export const RegStep2 = props => {
             </div>
             <form className="register__form photo_input">
                 <h2 className="register__title">Смотрите прямо в камеру, без солнцезащитных очков и головных уборов.</h2>
-
-
                 <label className="">
-                    {/*<div style={{ position: "relative", width: "fit-content", height: "fit-content", margin: "0 auto" }}>*/}
                         <input type="file" className=""
                            onChange={(e) => {
                                const binaryData = [];
                                binaryData.push(e.target.files[0]);
-                               // window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
-                               setPhotoUrl(URL.createObjectURL(new Blob(binaryData, {type: "application/zip"})));
-                               // setPhotoUrl(URL.createObjectURL(e.target.files[0]));
+                               dispatch(setUserData({photo: URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))}));
                            }}
                     />
-
-                    {/*</div>*/}
                 </label>
                 <div className="imageWrapper">
-                    <img src={photoUrl}/>
+                    <img src={photo}/>
                 </div>
-
-
-
             </form>
             <div className="register__footer">
-                <button onClick={fetchHandler}>
-                    {isLoading
-                        ? <Loader
-                            type="TailSpin"
-                            color="#fafafa"
-                            height={30}
-                            width={30}
-                            // timeout={3000} //3 secs
-                        />
-                        : <span>Продолжить</span>
-
-                    }
+                <button onClick={nextHandler}>
+                    <span>Продолжить</span>
                 </button>
             </div>
-            {false &&
-                <div className="server-error">
-                    <span>Не удалось продолжить регистрацию. Попробуйте ещё раз</span>
-                </div>}
         </main>
     )
 }

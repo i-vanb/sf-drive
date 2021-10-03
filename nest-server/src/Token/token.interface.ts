@@ -7,5 +7,6 @@ export interface TokenPair {
 
 export interface TokenPayload {
     userName: string,
-    userID: ObjectID
+    userID: number
+    // userID: ObjectID
 }

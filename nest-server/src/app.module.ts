@@ -3,32 +3,33 @@ import {AppController} from './app.controller';
 import {AppService} from './app.service';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {AuthModule} from "./Auth/auth.module";
-import {GraphQLModule} from "@nestjs/graphql";
 import {CarModule} from "./Cars/car.module";
+import {RideModule} from "./Ride/ride.module";
+import {FileModule} from "./File/file.module";
+
 
 @Module({
     imports: [
         CarModule,
+        RideModule,
         TypeOrmModule.forRoot({
-            name: 'default',
-            type: "mongodb",
+            type: 'mysql',
             host: 'localhost',
-            port: 27017,
-            database: 'cars-mongo',
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            entities: [
-                `${__dirname}/**/*.entity.{ts,js}`
-            ]
+            port: 3306,
+            username: 'root',
+            password: 'UZfah1t2l',
+            database: 'sf_drive',
+            entities: ['dist/**/*.entity{.ts,.js}'],
+            synchronize: true
         }),
         AuthModule,
-        GraphQLModule.forRoot({
-            autoSchemaFile: 'schema.gql'
-            // typePaths: ['./**/*.graphql'],
-            // definitions: {
-            //     path: join(process.cwd(), '/src/graphql.ts')
-            // }
-        })
+        // GraphQLModule.forRoot({
+        //     autoSchemaFile: 'schema.gql',
+        //     typePaths: ['./**/*.graphql'],
+        //     definitions: {
+        //         path: join(process.cwd(), '/src/graphql.ts')
+        //     }
+        // })
     ],
     controllers: [AppController],
     providers: [AppService]

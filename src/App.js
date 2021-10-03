@@ -11,7 +11,8 @@ import "./styles/Register.css"
 import "./styles/Searching.css"
 import "./styles/Sign.css"
 import "./styles/Header.css"
-import "./styles/About.css";
+import "./styles/About.css"
+import "./styles/Car.css"
 
 import About from "./About/About";
 import Faq from "./Faq/Faq";
@@ -22,10 +23,11 @@ import {authMe} from "./redux/action/auth";
 import RegisterContainer from "./Register/RegisterContainer";
 import {RegSuccess} from "./Register/RegSuccess";
 import BookingsContainer from "./Bookings/BookingsContainer";
-import CarsContainer from "./Messages/CarsContainer";
-import MessagesContainer from "./Cars/MessagesContainer";
+import CarsContainer from "./Cars/CarsContainer";
+import MessagesContainer from "./Messages/MessagesContainer";
 import MainContainer from "./Main/MainContainer";
 import {AuthTemp} from "./components/Temps/AuthTemp";
+import {CarCreate} from "./Cars/CarCreate";
 
 function App() {
     const [isSignShow, setIsSignShow] = useState(false);
@@ -52,10 +54,13 @@ function App() {
                     <Route exact path="/cars">
                         <CarsContainer />
                     </Route>
+                    <Route path="/car/create">
+                        <CarCreate/>
+                    </Route>
                     <Route exact path="/messages">
                         <MessagesContainer />
                     </Route>
-                    <Route path="/">
+                    <Route exact path="/">
                         <MainContainer />
                     </Route>
                 </Switch>
@@ -64,16 +69,16 @@ function App() {
                     <Route path="/faq">
                         <Faq/>
                     </Route>
-                    <Route exact path="/test">
+                    <Route exact path="/success-register">
                         <RegSuccess />
                     </Route>
-                    <Route exact path="/register">
+                    <Route path="/register">
                         <RegisterContainer />
                     </Route>
                     <Route path="/about">
                         <About/>
                     </Route>
-                    <Route path="/">
+                    <Route exact path="/">
                         <MainContainer />
                     </Route>
                 </Switch>

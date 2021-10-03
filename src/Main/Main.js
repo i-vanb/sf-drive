@@ -10,6 +10,7 @@ import percent from "../img/percent.svg";
 import money from "../img/money.svg";
 import toy_car from "../img/toy_car.svg";
 import Footer from "../components/Footer";
+import {NavLink} from "react-router-dom";
 
 
 function MainUnAuth() {
@@ -28,9 +29,9 @@ function MainUnAuth() {
                         и командировок.
                     </p>
                     <div className="register__main__header">
-                        <a href="/register">
+                        <NavLink to="/register/1">
                             Зарегистрироваться
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
             </section>
@@ -133,9 +134,9 @@ function MainUnAuth() {
                 <div className="content-container">
                     <img src={toy_car}/>
                     <h2>Попробуйте аренду на себе</h2>
-                    <a href="/register" className="register__main__below">
+                    <NavLink to="/register/1" className="register__main__below">
                         Зарегистрироваться
-                    </a>
+                    </NavLink>
                 </div>
             </section>
             <Footer />

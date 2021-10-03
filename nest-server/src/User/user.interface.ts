@@ -9,5 +9,7 @@ export interface User {
     passport_code: string,
     licence_number: string,
     licence_date: string,
-    password?: string
+    password?: string,
+    photo: object,
+    docs: object
 }

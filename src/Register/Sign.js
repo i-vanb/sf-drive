@@ -1,11 +1,11 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import sign_draw from "../img/sign_in_draw.svg"
 import closeIcon from "../img/close-icon.png"
 
 import {Link, useHistory} from "react-router-dom";
 import {Recovery} from "./Recovery";
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../redux/action/auth";
+import {login, setSignUpError} from "../redux/action/auth";
 import Loader from "react-loader-spinner";
 
 
@@ -18,6 +18,12 @@ export const Sign = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
 
+    const authError = useSelector(state => state.auth.error)
+
+    useEffect(()=>{
+        console.log("USE EFFECT")
+        dispatch(setSignUpError(""))
+    }, [psw, mail])
 
     const dispatch = useDispatch();
 
@@ -55,11 +61,15 @@ export const Sign = props => {
     }
 
 
+
+
     if (isPswForgotten)
         return <Recovery
             closeHandler={showSignHandler}
             getBack={() => setIsPswForgotten(false)}
         />
+
+
 
     return (
         <div className="modal">
@@ -70,7 +80,7 @@ export const Sign = props => {
                 <img className="draw-image" src={sign_draw}/>
                 <h2>Авторизация</h2>
                 <form className="sign__form">
-                    {error &&
+                    {authError &&
                     <div className="errorSign">Не верное имя пользователя или пароль</div>
                     }
                     <div className="input__wrapper">
@@ -105,7 +115,7 @@ export const Sign = props => {
                 </form>
                 <div onClick={() => showSignHandler(false)}
                      className="reg-link">
-                    <Link className="reg-link" to="/register">Зарегистрироваться</Link>
+                    <Link className="reg-link" to="/register/1">Зарегистрироваться</Link>
                 </div>
             </div>
         </div>

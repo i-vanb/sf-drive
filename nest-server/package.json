@@ -37,7 +37,7 @@
     "graphql-tools": "^7.0.5",
     "mongo": "^0.1.0",
     "mongoose": "^5.12.3",
-    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
     "nodemailer": "^6.5.0",
     "passport": "^0.4.1",
     "reflect-metadata": "^0.1.13",

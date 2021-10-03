@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, Post, Query} from "@nestjs/common";
 import {CarService} from "./car.service";
 
 // it is needed only for testing
@@ -9,6 +9,11 @@ export class CarController {
     @Post("create")
     create(@Body() car) {
         return this.carService.create(car)
+    }
+
+    @Get()
+    getCars(@Query() query) {
+        return this.carService.findCars(query)
     }
 
     @Get("all")
@@ -22,12 +27,12 @@ export class CarController {
     }
 
     @Post("find")
-    findByMail(@Body() body) {
+    findById(@Body() body) {
         return this.carService.findById(body.id)
     }
 
-    @Post("del")
-    removeUser(@Body() body) {
+    @Delete("remove")
+    removeCar(@Body() body) {
         return this.carService.removeCar(body.id)
     }
 

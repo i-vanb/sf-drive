@@ -5,10 +5,12 @@ import {Link} from "react-router-dom"
 // import "../styles/Header.css"
 import logo from "../img/Logo.svg"
 import closeIcon from "../img/close.svg"
+import {useSelector} from "react-redux";
 
 
 const MobileMenu = props => {
     const {closeHandler, showSignHandler} = props
+    const isAuth = useSelector(state => state.auth.isAuthorized);
 
     return (
         <div id="mobile-menu" className="menu__mobile is-mobile is-animated">
@@ -19,9 +21,24 @@ const MobileMenu = props => {
                 </button>
             </div>
             <nav className="menu__mobile__nav" onClick={closeHandler}>
-                <Link className="menu__mobile__nav_link" to="/">О Нас</Link>
-                <Link className="menu__mobile__nav_link" to="/">Условия</Link>
-                <Link className="menu__mobile__nav_link" to="/faq">Частые вопросы</Link>
+                {isAuth
+                    ?
+                    <>
+                        <Link className="menu__mobile__nav_link is-animated" to="/bookıngs">Бронирования</Link>
+                        <Link className="menu__mobile__nav_link is-animated" to="/cars">Мои автомобили</Link>
+                        <Link className="menu__mobile__nav_link is-animated" to="/messages">Сообщения</Link>
+                    </>
+                    :
+                    <>
+                        <Link className="menu__mobile__nav_link is-animated" to="/about">О Нас</Link>
+                        <Link className="menu__mobile__nav_link is-animated" to="/">Условия</Link>
+                        <Link className="menu__mobile__nav_link is-animated" to="/faq">Частые вопросы</Link>
+                    </>
+                }
+
+                {/*<Link className="menu__mobile__nav_link" to="/">О Нас</Link>*/}
+                {/*<Link className="menu__mobile__nav_link" to="/">Условия</Link>*/}
+                {/*<Link className="menu__mobile__nav_link" to="/faq">Частые вопросы</Link>*/}
             </nav>
             <button onClick={()=> {
                 closeHandler()

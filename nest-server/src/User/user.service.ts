@@ -22,20 +22,11 @@ export class UserService {
         return await this.userRepository.getUsers()
     }
 
+
     async update(user) {
         const existingUser = await this.findByMail(user.mail)
         if(!existingUser) throw new HttpException('Mail is not found', HttpStatus.NOT_FOUND);
-        existingUser.name = user.name
-        existingUser.mail = user.mail
-        existingUser.phone = user.phone
-        existingUser.birth_date = user.birth_date
-        existingUser.passport_number = user.passport_number
-        existingUser.passport_date = user.passport_date
-        existingUser.passport_vendor = user.passport_vendor
-        existingUser.passport_code = user.passport_code
-        existingUser.licence_date = user.licence_date
-        existingUser.password = user.password
-
+        Object.keys(user).map(i =>  existingUser[i] = user[i])
         return await this.userRepository.update(existingUser)
     }
 
