@@ -1,5 +1,9 @@
 import {fetchData} from "../../api";
 import {GET_CARS} from "../reducer/cars";
+import {getUserCars} from "./user";
+import {useQuery} from "@apollo/client";
+import {FETCH_CARS_BY_CITY_QUERY} from "../../utils/graphql-request";
+
 
 export const getCars = params => async dispatch => {
     const res = await fetchData({
@@ -13,6 +17,8 @@ export const getCars = params => async dispatch => {
     } else {}
 }
 
+export const getFilteredCars = cars => ({type: GET_CARS, payload: cars})
+
 export const createCar = car => async dispatch => {
     const res = await fetchData({
         method: "post",
@@ -22,6 +28,7 @@ export const createCar = car => async dispatch => {
     })
     if(res.status === 200 || res.status === 201) {
         dispatch({type: GET_CARS, payload: res.data})
+        dispatch(getUserCars(car.ownerId))
     } else {}
 }
 

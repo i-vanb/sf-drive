@@ -1,6 +1,8 @@
 import {SET_AUTHORIZED, SET_SIGN_UP_ERROR} from "../constant";
 import {fetchData} from "../../api";
 import {setLoading} from "./system";
+import {getCars} from "./cars";
+import {getUserCars} from "./user";
 
 
 export const login = (mail, password) => async dispatch => {
@@ -10,12 +12,12 @@ export const login = (mail, password) => async dispatch => {
         options: {mail, password},
         dispatch
     })
-    console.log(res)
     if (res.status === 201) {
         const tokenPair = {accessToken: res.data.accessToken, refreshToken: res.data.refreshToken};
         const userData = {userName: res.data.userName, userID: res.data.userID};
         setTokenPair(tokenPair);
         dispatch(setAuthorized(true, userData));
+        dispatch(getUserCars(userData.userID))
     } else {
         dispatch(setSignUpError(res.data.message))
     }
@@ -28,7 +30,9 @@ export const logout = () => dispatch => {
     dispatch(setAuthorized(false));
 }
 
-export const setAuthorized = (isAuth = true, user) => ({type: SET_AUTHORIZED, payload: {isAuthorized: isAuth, ...user}})
+export const setAuthorized = (isAuth = true, user) => dispatch => {
+    dispatch({type: SET_AUTHORIZED, payload: {isAuthorized: isAuth, ...user}})
+}
 
 export const setSignUpError = error => ({type: SET_SIGN_UP_ERROR, payload: {error}})
 
@@ -45,6 +49,7 @@ export const authMe = () => async dispatch => {
 
     if(res.status === 201 || res.status === 200) {
         dispatch(setAuthorized(true, res.data))
+        dispatch(getUserCars(res.data.userID))
     } else {
         dispatch(refreshMe())
     }
@@ -105,7 +110,6 @@ export const signUp = user => async dispatch => {
     //         const tokenPair = {accessToken: res.data.accessToken, refreshToken: res.data.refreshToken}
     //         const userData = {userName: res.data.userName, userID: res.data.userID}
     //         setTokenPair(tokenPair);
-    //         console.log(tokenPair, userData)
     //         dispatch(setAuthorized(true, userData));
     //         dispatch(setSignUpError(""));
     //     })

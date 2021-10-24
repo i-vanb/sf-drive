@@ -1,4 +1,9 @@
 export interface File {
-    file: object,
-    entity_id: string
+    // file: string,
+    fieldname: string,
+    originalname: string,
+    encoding: string,
+    mimetype: string,
+    buffer: any,
+    size: number
 }

@@ -17,9 +17,7 @@ export interface Car {
     price: number,
     price_3d: number,
     price_5d: number,
-    // type: string,
-    // drive: string,
-    // engine: string,
+    city: string,
     options?: [],
     imgSM?: string,
     photos?: []

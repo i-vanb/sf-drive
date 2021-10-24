@@ -19,7 +19,6 @@ export const CheckBoxInput = ({isActive, setIsActive, title, desc, inputValue, s
         setInputValue(e.target.value)
 
     }
-    console.log()
     return(
         <div className="checkbox-input__container">
             <div className="checkbox-input__label">

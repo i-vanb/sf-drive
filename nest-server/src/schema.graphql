@@ -1,17 +1,55 @@
 type Car {
-    _id: ID!
+    id: ID!
     ownerId: String!
-    name: String!
-    year: Int!
-    shortRent: Int!
-    midRent: Int!
-    longRent: Int!
-    type: String!
-    drive: String!
+    number: String!
+    pts: String!
+    sts: String!
+    power_ls: String!
+    power_kvt: String!
+    mark: String!
+    model: String!
+    vin: String!
+    color: String!
+    volume: String!
+    year: String!
+    price: Int!
+    price_3d: Int!
+    price_5d: Int!
     transmission: String!
-    engine: String!
-    run: Int!
-    imgSM: String
-    options: String
-    photos: String
+    engine_type: String!
+    run: String!
+    city: String!
+}
+
+type Query {
+    allCars: [Car!]!
+    findById(id: ID!): Car
+    findAllCarsByMark(mark: String!): [Car!]!
+    findAllCarsByCity(city: String!): [Car!]!
+}
+
+input CreateCarInput {
+    ownerId: String!
+    number: String!
+    pts: String!
+    sts: String!
+    power_ls: String!
+    power_kvt: String!
+    mark: String!
+    model: String!
+    vin: String!
+    color: String!
+    volume: String!
+    year: String!
+    price: Int!
+    price_3d: Int!
+    price_5d: Int!
+    transmission: String!
+    engine_type: String!
+    run: String!
+    city: String!
+}
+
+type Mutation {
+    createCar(createCarInput: CreateCarInput!): Car!
 }

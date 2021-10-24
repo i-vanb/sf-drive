@@ -16,7 +16,6 @@ export class RideService {
 
     async findRides(query) {
         return await this.ridesRepository.findRides(query)
-        // console.log(query)
     }
 
     async getByPassenger(passengerID: number) {

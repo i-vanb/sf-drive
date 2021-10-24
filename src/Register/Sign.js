@@ -21,7 +21,6 @@ export const Sign = props => {
     const authError = useSelector(state => state.auth.error)
 
     useEffect(()=>{
-        console.log("USE EFFECT")
         dispatch(setSignUpError(""))
     }, [psw, mail])
 
@@ -48,7 +47,6 @@ export const Sign = props => {
         if (response.ok) {
             setIsLoading(false)
             const data = await response.json()
-            console.log(data)
             localStorage.setItem("accessToken", data.accessToken)
             localStorage.setItem("refreshToken", data.refreshToken)
             // localStorage.setItem("payload", JSON.stringify(data.payload))

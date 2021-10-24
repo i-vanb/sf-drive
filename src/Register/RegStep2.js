@@ -10,7 +10,6 @@ import {setUserData} from "../redux/action/user";
 export const RegStep2 = () => {
     const photo = useSelector(state => state.user.photo)
 
-    console.log(photo)
     const dispatch = useDispatch();
     const history = useHistory()
 

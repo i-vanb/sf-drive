@@ -43,6 +43,7 @@ const initialState = {
     carDelivery: '',
     freePlace: '',
     fuel: '',
+    city: '',
     isCreated: false
 }
 

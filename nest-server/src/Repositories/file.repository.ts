@@ -23,8 +23,8 @@ export class FileRepository {
     //     return await this.fileRepository.findOne({id: id})
     // }
 
-    async getFiles(entity_id: string) {
-        return await this.fileRepository.find({entity_id})
+    async getFiles() {
+        return await this.fileRepository.find()
     }
 
     async findOne(id: number) {

@@ -12,6 +12,7 @@ export class CarService {
         const newCar = new CarsEntity(
             car.ownerId, car.mark, car.model, car.number, car.year, car.color, car.vin, car.engine_type, car.volume,
             car.power_ls, car.power_kvt, car.transmission, car.run, car.pts, car.sts, car.price, car.price_3d, car.price_5d,
+            car.city
             // car.ownerId, car.name, car.year, car.shortRent, car.midRent, car.longRent,
             // car.type, car.drive, car.transmission, car.engine, car.run, car.imgSM, car.options, car.photos
         );
@@ -20,7 +21,6 @@ export class CarService {
 
     async findCars(query) {
         return await this.carRepository.findCars(query)
-        // console.log(query)
     }
 
     async getByOwner(ownerId: number) {
@@ -29,6 +29,14 @@ export class CarService {
 
     async findById(id:number):Promise<CarsEntity> {
         return await this.carRepository.findCar(id)
+    }
+
+    async findByMark(mark: string) {
+        return await this.carRepository.getCarsByMark(mark)
+    }
+
+    async findByCity(city: string) {
+        return await this.carRepository.getCarsByCity(city)
     }
 
     async getAll():Promise<CarsEntity[]> {

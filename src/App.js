@@ -28,6 +28,9 @@ import MessagesContainer from "./Messages/MessagesContainer";
 import MainContainer from "./Main/MainContainer";
 import {AuthTemp} from "./components/Temps/AuthTemp";
 import {CarCreate} from "./Cars/CarCreate";
+import {useQuery} from "@apollo/client";
+import {FETCH_All_CARS_QUERY} from "./utils/graphql-request";
+import {FETCH_CARS_BY_CITY_QUERY} from "./utils/graphql-request";
 
 function App() {
     const [isSignShow, setIsSignShow] = useState(false);
@@ -35,10 +38,16 @@ function App() {
     const user = useSelector(state => state.auth);
     let history = useHistory();
 
+    // const cars = useQuery(FETCH_All_CARS_QUERY)
+    // const cars = useQuery(FETCH_CARS_BY_CITY_QUERY, {
+    //     variables: {city: 'Челябинск'}
+    // })
+
+
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(authMe());
-    }, [])
+        }, [])
 
     return (
         <>

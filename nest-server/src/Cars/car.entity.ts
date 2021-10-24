@@ -1,5 +1,4 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
-import {Field, ID, ObjectType} from "@nestjs/graphql";
 
 
 @Entity()
@@ -8,7 +7,7 @@ export class CarsEntity {
     constructor(
         ownerId, mark, model, number, year, color, vin, engine_type,
         volume, power_ls, power_kvt, transmission, run, pts, sts,
-        price, price_3d, price_5d
+        price, price_3d, price_5d, city
         // type, drive,  imgSM, options, photos,
     ) {
         this.mark = mark
@@ -29,6 +28,7 @@ export class CarsEntity {
         this.price = price
         this.price_3d = price_3d
         this.price_5d = price_5d
+        this.city = city
 
         // this.type = type
         // this.drive = drive
@@ -101,6 +101,9 @@ export class CarsEntity {
     // @Field()
     @Column()
     price_5d: number;
+
+    @Column()
+    city: string;
 
     // @Field()
     @Column()

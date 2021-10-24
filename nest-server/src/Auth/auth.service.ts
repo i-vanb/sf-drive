@@ -18,7 +18,6 @@ export class AuthService {
         // throw new HttpException('Mail is already exist', HttpStatus.CONFLICT);
         const isUserExists = await this.userService.findByMail(user.mail);
         if(isUserExists) throw new HttpException('Mail is already exist', HttpStatus.CONFLICT);
-        // console.log(user)
         const newUser = await this.userService.create(user);
         const payload = {
             userName: newUser.name,
@@ -51,13 +50,14 @@ export class AuthService {
         try {
             this.tokenService.verifyToken(refreshToken, REFRESH_TOKEN_SECRET);
         } catch (err) {
-            // throw new HttpException('Token is invalid', HttpStatus.NOT_ACCEPTABLE)
-            const tokenData = this.tokenService.decodeToken(refreshToken);
-            const payload = {
-                userName: tokenData.userName,
-                userID: tokenData.userID
-            }
-            return this.tokenService.createPair(payload)
+            throw new HttpException('Token is invalid', HttpStatus.NOT_ACCEPTABLE)
+
         }
+        const tokenData = this.tokenService.decodeToken(refreshToken);
+        const payload = {
+            userName: tokenData.userName,
+            userID: tokenData.userID
+        }
+        return this.tokenService.createPair(payload)
     }
 }

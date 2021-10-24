@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 import {CarsEntity} from "../Cars/car.entity";
-import {Repository} from "typeorm";
+import {Like, Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Car} from "../Cars/car.interface";
 
@@ -21,11 +21,29 @@ export class CarsRepository {
     }
 
     async findCar(id: number) {
-        return await this.carRepository.findByIds([id])[0]
+        const list = await this.carRepository.findByIds([id])
+        // return await this.carRepository.findByIds([id])[0]
+        return list[0]
     }
 
     async findCars(query) {
         return await this.carRepository.find(query)
+    }
+
+    async getCarsByMark(mark: string) {
+        return await this.carRepository.find({
+            where: {
+                mark: Like(`%${mark}%`)
+            }
+        })
+    }
+
+    async getCarsByCity(city: string) {
+        return await this.carRepository.find({
+            where: {
+                city: Like(`%${city}%`)
+            }
+        })
     }
 
     async getCars() {

@@ -11,7 +11,6 @@ import {CarSuccess} from "./CarSuccess";
 export const CarCreteStep4 = () => {
     const [isLoading, setIsLoading] = useState(false)
     const car = useSelector(state => state.car)
-    console.log(car)
     const {isCreated} = car
 
     const dispatch = useDispatch()

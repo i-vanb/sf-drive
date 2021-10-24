@@ -11,7 +11,7 @@ export const CarCreteStep1 = () => {
     const history = useHistory()
     const car = useSelector(state => state.car)
     const {mark, model, number, year, id, color, vin, ownerId, engine_type, volume, power_ls, power_kvt,
-        transmission, run, pts, sts, price_3d, price, price_5d, osago, casco} = car
+        transmission, run, pts, sts, price_3d, price, price_5d, osago, casco, city} = car
 
     const updateCarHandlerOld = update => {
         dispatch(setCar(update))
@@ -130,6 +130,13 @@ export const CarCreteStep1 = () => {
                 </div>
                 <h2 className="register__title">Стоимость аренды</h2>
                 <div className="form-section-wrapper">
+                    <label className="register__blockInput">
+                        <span className="register__blockInput__title">Местонахождение</span>
+                        <input type="text" value={city} placeholder="Город"
+                               onChange={(e) => updateCarHandlerOld({city: e.target.value})}
+                        />
+                        {/*<span className="error">пароль не совпадает</span>*/}
+                    </label>
                     <label className="register__blockInput">
                         <span className="register__blockInput__title">Обычная цена</span>
                         <input type="text" value={price} placeholder="1500 руб/сут"

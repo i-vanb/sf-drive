@@ -3,7 +3,6 @@ import back from "../img/back.svg";
 
 
 export const CarDetail = props => {
-console.log(props)
     return (
         <div className="">
             <div className="content-container">

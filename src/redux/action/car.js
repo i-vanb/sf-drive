@@ -2,6 +2,7 @@ import {RESET_CAR, SET_CAR, SET_CAR_ERROR, SET_CAR_PHOTO, TOGGLE_CAR_CHECK, SET_
 import {setLoading} from "./system";
 import {fetchData} from "../../api";
 import {setAuthorized, setSignUpError, setTokenPair} from "./auth";
+import {getUserCars} from "./user";
 
 export const setCar = update => ({type: SET_CAR, payload: update})
 export const toggleCar = name => ({type: TOGGLE_CAR_CHECK, payload: name})
@@ -25,5 +26,6 @@ export const createCar = (car) => async dispatch => {
     })
     if(res.status === 201 || res.status === 200) {
         dispatch(setCreated(true))
+        dispatch(getUserCars(car.ownerId))
     } else {}
 }

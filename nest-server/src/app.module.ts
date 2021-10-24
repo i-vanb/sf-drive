@@ -1,3 +1,4 @@
+import {join} from 'path'
 import {Module} from '@nestjs/common';
 import {AppController} from './app.controller';
 import {AppService} from './app.service';
@@ -6,6 +7,8 @@ import {AuthModule} from "./Auth/auth.module";
 import {CarModule} from "./Cars/car.module";
 import {RideModule} from "./Ride/ride.module";
 import {FileModule} from "./File/file.module";
+import {GraphQLModule} from "@nestjs/graphql";
+import {CarResolver} from "./Cars/car.resolver";
 
 
 @Module({
@@ -22,16 +25,18 @@ import {FileModule} from "./File/file.module";
             entities: ['dist/**/*.entity{.ts,.js}'],
             synchronize: true
         }),
-        AuthModule,
-        // GraphQLModule.forRoot({
-        //     autoSchemaFile: 'schema.gql',
-        //     typePaths: ['./**/*.graphql'],
-        //     definitions: {
-        //         path: join(process.cwd(), '/src/graphql.ts')
-        //     }
-        // })
+        AuthModule, FileModule,
+        GraphQLModule.forRoot({
+            // autoSchemaFile: 'schema.gql',
+            typePaths: ['./**/*.graphql'],
+            definitions: {
+                path: join(process.cwd(), '/src/graphql.ts')
+            }
+        })
     ],
     controllers: [AppController],
-    providers: [AppService]
+    providers: [AppService, CarResolver]
 })
+
+
 export class AppModule {}

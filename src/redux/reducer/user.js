@@ -11,16 +11,23 @@ const initialState = {
     licence_date: '',
     password: '',
     photo: '',
-    docs: []
+    docs: [],
+    cars: []
 }
 
 export const GET_USER = 'GET_USER'
 export const GET_USER_PHOTO = 'GET_USER_PHOTO'
+export const GET_USER_CARS = 'GET_USER_CARS'
 export const ADD_USER_DOC = 'ADD_USER_DOC'
 export const REMOVE_USER_DOC = 'REMOVE_USER_DOC'
 
 export const user = (state = initialState, action) => {
     switch (action.type) {
+        case GET_USER_CARS:
+            return {
+                ...state,
+                cars: action.payload
+            }
         case REMOVE_USER_DOC:
             return {
                 ...state,

@@ -77,3 +77,20 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.user-cars__item{
+    display: flex;
+    flex-direction: row;
+}
+.user-cars__item__photo{
+    margin-right: 20px;
+    max-width: 240px;
+}
+.user-cars__item__photo img{
+    width: 100%;
+}
+
+.user-cars__item__desc{}
+.user-cars__item__desc div{
+    text-align: left;
+}
