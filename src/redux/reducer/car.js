@@ -44,18 +44,31 @@ const initialState = {
     freePlace: '',
     fuel: '',
     city: '',
-    isCreated: false
+    isCreated: false,
+    docs: [],
+    photos: []
 }
 
 export const SET_CAR = "SET_CAR"
 export const RESET_CAR = "RESET_CAR"
 export const SET_CAR_ERROR = "SET_CAR_ERROR"
 export const SET_CAR_PHOTO = "SET_CAR_PHOTO"
+export const SET_CAR_DOC = "SET_CAR_DOC"
 export const TOGGLE_CAR_CHECK = "TOGGLE_CAR_CHECK"
 export const SET_CAR_CREATED = "SET_CAR_CREATED"
 
 export const car = (state = initialState, action) => {
     switch (action.type) {
+        case SET_CAR_PHOTO:
+            return {
+                ...state,
+                photos: [...state.photos, action.payload]
+            }
+        case SET_CAR_DOC:
+            return {
+                ...state,
+                docs: [...state.docs, action.payload]
+            }
         case SET_CAR_CREATED:
             return {
                 ...state,

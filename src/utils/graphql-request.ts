@@ -53,3 +53,30 @@ export const FETCH_CARS_BY_CITY_QUERY = gql`
       }
     }
 `;
+
+export const CREATE_CAR_REQUEST = gql`
+    mutation CreateCar($createCarInput: CreateCarInput!) {
+        createCar(createCarInput: $createCarInput) {
+            id
+            mark
+            model
+            number
+            pts
+            sts
+            ownerId
+            power_ls
+            power_kvt
+            vin
+            color
+            volume
+            year
+            price
+            price_3d
+            price_5d
+            transmission
+            engine_type
+            run
+            city
+        }
+    }
+`;

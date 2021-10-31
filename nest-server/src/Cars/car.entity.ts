@@ -7,7 +7,7 @@ export class CarsEntity {
     constructor(
         ownerId, mark, model, number, year, color, vin, engine_type,
         volume, power_ls, power_kvt, transmission, run, pts, sts,
-        price, price_3d, price_5d, city
+        price, price_3d, price_5d, city, docs, photos
         // type, drive,  imgSM, options, photos,
     ) {
         this.mark = mark
@@ -29,6 +29,8 @@ export class CarsEntity {
         this.price_3d = price_3d
         this.price_5d = price_5d
         this.city = city
+        this.docs = docs
+        this.photos = photos
 
         // this.type = type
         // this.drive = drive
@@ -117,25 +119,12 @@ export class CarsEntity {
     @Column()
     run: number;
 
+    // @Column({type: "set"})
+    // @Column()
+    @Column("simple-array")
+    docs
 
+    @Column("simple-array")
+    // @Column()
+    photos
 }
-
-
-//// @Field()
-//     @Column()
-//     imgSM?: string;
-//
-//     // @Field()
-//     @Column()
-//     options?: string;
-//
-//     // @Field()
-//     @Column()
-//     photos?: string;
-//// @Field()
-//     @Column()
-//     type: string;
-//
-//     // @Field()
-//     @Column()
-//     drive: string;

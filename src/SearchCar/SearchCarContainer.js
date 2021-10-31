@@ -63,7 +63,7 @@ export const CarsList = ({city, onDetail}) => {
     const {loading, data} = useQuery(FETCH_CARS_BY_CITY_QUERY, {
         variables: {city}
     })
-
+    // return <div>kkkk</div>
     // if(data) {
     //     console.log('data', Object.values(data))
     //     Object.values(data).map(i => console.log(i))
@@ -76,3 +76,5 @@ export const CarsList = ({city, onDetail}) => {
         </div>
     )
 }
+
+

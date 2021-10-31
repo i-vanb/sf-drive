@@ -24,7 +24,7 @@ const MobileMenu = props => {
                 {isAuth
                     ?
                     <>
-                        <Link className="menu__mobile__nav_link is-animated" to="/bookıngs">Бронирования</Link>
+                        <Link className="menu__mobile__nav_link is-animated" to="/bookings">Бронирования</Link>
                         <Link className="menu__mobile__nav_link is-animated" to="/cars">Мои автомобили</Link>
                         <Link className="menu__mobile__nav_link is-animated" to="/messages">Сообщения</Link>
                     </>

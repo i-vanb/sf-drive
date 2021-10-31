@@ -19,6 +19,8 @@ type Car {
     engine_type: String!
     run: String!
     city: String!
+    docs: [String!]!
+    photos: [String!]!
 }
 
 type Query {
@@ -48,6 +50,8 @@ input CreateCarInput {
     engine_type: String!
     run: String!
     city: String!
+    docs: [String!]!
+    photos: [String!]!
 }
 
 type Mutation {

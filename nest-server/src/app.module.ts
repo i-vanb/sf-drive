@@ -9,6 +9,7 @@ import {RideModule} from "./Ride/ride.module";
 import {FileModule} from "./File/file.module";
 import {GraphQLModule} from "@nestjs/graphql";
 import {CarResolver} from "./Cars/car.resolver";
+import {CarFilesModule} from "./CarFiles/carFiles.module";
 
 
 @Module({
@@ -25,7 +26,7 @@ import {CarResolver} from "./Cars/car.resolver";
             entities: ['dist/**/*.entity{.ts,.js}'],
             synchronize: true
         }),
-        AuthModule, FileModule,
+        AuthModule, FileModule, CarFilesModule,
         GraphQLModule.forRoot({
             // autoSchemaFile: 'schema.gql',
             typePaths: ['./**/*.graphql'],

@@ -27,6 +27,8 @@ export interface CreateCarInput {
     engine_type: string;
     run: string;
     city: string;
+    docs: string[];
+    photos: string[];
 }
 
 export interface Car {
@@ -50,6 +52,8 @@ export interface Car {
     engine_type: string;
     run: string;
     city: string;
+    docs: string[];
+    photos: string[];
 }
 
 export interface IQuery {

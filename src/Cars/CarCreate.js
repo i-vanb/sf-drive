@@ -9,12 +9,13 @@ import {resetCar} from "../redux/action/car";
 
 export const CarCreate = () => {
     const carID = useSelector(state => state.car.id)
-    const ownerId = useSelector(state => state.auth.userId)
+    const ownerId = useSelector(state => state.auth.userID)
     const dispatch = useDispatch()
 
     useEffect(()=>{
         dispatch(resetCar(ownerId))
     }, [carID])
+
     return(
         <div className="content-container">
             <Switch>

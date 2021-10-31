@@ -20,5 +20,6 @@ export interface Car {
     city: string,
     options?: [],
     imgSM?: string,
-    photos?: []
+    photos: string[]
+    docs: string[]
 }

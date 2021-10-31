@@ -25,7 +25,7 @@ const Header = props => {
             {isAuth
                 ?
                 <>
-                    <Link className="header__nav__link is-animated" to="/bookıngs">Бронирования</Link>
+                    <Link className="header__nav__link is-animated" to="/bookings">Бронирования</Link>
                     <Link className="header__nav__link is-animated" to="/cars">Мои автомобили</Link>
                     <Link className="header__nav__link is-animated" to="/messages">Сообщения</Link>
                 </>
