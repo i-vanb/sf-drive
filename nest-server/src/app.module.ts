@@ -10,6 +10,7 @@ import {FileModule} from "./File/file.module";
 import {GraphQLModule} from "@nestjs/graphql";
 import {CarResolver} from "./Cars/car.resolver";
 import {CarFilesModule} from "./CarFiles/carFiles.module";
+import { MessagesGateway } from './messages/messages.gateway';
 
 
 @Module({
@@ -36,7 +37,7 @@ import {CarFilesModule} from "./CarFiles/carFiles.module";
         })
     ],
     controllers: [AppController],
-    providers: [AppService, CarResolver]
+    providers: [AppService, CarResolver, MessagesGateway]
 })
 
 
