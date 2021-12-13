@@ -51,7 +51,6 @@ export class AuthService {
             this.tokenService.verifyToken(refreshToken, REFRESH_TOKEN_SECRET);
         } catch (err) {
             throw new HttpException('Token is invalid', HttpStatus.NOT_ACCEPTABLE)
-
         }
         const tokenData = this.tokenService.decodeToken(refreshToken);
         const payload = {

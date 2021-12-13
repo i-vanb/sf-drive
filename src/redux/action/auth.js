@@ -2,7 +2,7 @@ import {SET_AUTHORIZED, SET_SIGN_UP_ERROR} from "../constant";
 import {fetchData} from "../../api";
 import {setLoading} from "./system";
 import {getCars} from "./cars";
-import {getUserCars} from "./user";
+import {getUser, getUserCars, removeUser} from "./user";
 
 
 export const login = (mail, password) => async dispatch => {
@@ -28,6 +28,7 @@ export const login = (mail, password) => async dispatch => {
 export const logout = () => dispatch => {
     resetTokenPair();
     dispatch(setAuthorized(false));
+    dispatch(removeUser())
 }
 
 export const setAuthorized = (isAuth = true, user) => dispatch => {
@@ -50,7 +51,10 @@ export const authMe = () => async dispatch => {
     if(res.status === 201 || res.status === 200) {
         dispatch(setAuthorized(true, res.data))
         dispatch(getUserCars(res.data.userID))
+        dispatch(getUser(res.data.userID))
+        // dispatch(refreshMe({user: res.data}))
     } else {
+        // console.log(res)
         dispatch(refreshMe())
     }
 }
@@ -67,9 +71,22 @@ export const refreshMe = () => async dispatch => {
     })
     if(res.status === 201 || res.status === 200) {
         const tokenPair = {accessToken: res.data.accessToken, refreshToken: res.data.refreshToken}
-        const userData = {userName: res.data.userName, userID: res.data.userID}
         setTokenPair(tokenPair);
-        dispatch(setAuthorized(true, userData));
+
+
+        const userDataRes = await fetchData({
+            method: "post",
+            url: "http://localhost:8000/token/dec",
+            options: {token: res.data.accessToken},
+            dispatch
+        })
+        if(userDataRes.status === 201 || res.status === 200) {
+            // console.log(userDataRes)
+            const user = userDataRes.data
+            dispatch(setAuthorized(true, user));
+            dispatch(getUser(user.userID))
+            dispatch(getUserCars(user.userID))
+        }
     } else {
 
     }
@@ -85,12 +102,29 @@ export const resetTokenPair = () => {
     localStorage.setItem("refreshToken", "");
 }
 
+const postAvatar = async photo => {
+    const formData = new FormData()
+    formData.append('file', photo)
+    const res = await fetchData({
+        method: "post",
+        url: "http://localhost:8000/file/create",
+        options: formData
+    })
+    if(res.status === 201 || res.status === 200) {
+        return res.data.id
+    }
+}
+
 export const signUp = user => async dispatch => {
     dispatch(setLoading())
+    const photo_id = await postAvatar(user.photo)
+
+    const newUser = {...user, photo: photo_id}
+
     const res = await fetchData({
         method: "post",
         url: "http://localhost:8000/auth/signup",
-        options: user,
+        options: newUser,
         dispatch
     })
     if(res.status === 201 || res.status === 200) {

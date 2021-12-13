@@ -10,13 +10,16 @@ import {FileModule} from "./File/file.module";
 import {GraphQLModule} from "@nestjs/graphql";
 import {CarResolver} from "./Cars/car.resolver";
 import {CarFilesModule} from "./CarFiles/carFiles.module";
-import { MessagesGateway } from './messages/messages.gateway';
+import {MessagesGateway} from './messages/messages.gateway';
+import {BookingModule} from "./Booking/booking.module";
+import {BookingResolver} from "./Booking/booking.resolver";
 
 
 @Module({
     imports: [
         CarModule,
         RideModule,
+        BookingModule,
         TypeOrmModule.forRoot({
             type: 'mysql',
             host: 'localhost',
@@ -37,8 +40,7 @@ import { MessagesGateway } from './messages/messages.gateway';
         })
     ],
     controllers: [AppController],
-    providers: [AppService, CarResolver, MessagesGateway]
+    providers: [AppService, CarResolver, MessagesGateway, BookingResolver]
 })
-
 
 export class AppModule {}

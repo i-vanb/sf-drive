@@ -45,7 +45,6 @@ export class TokenService {
     verifyToken(token, secret = ACCESS_TOKEN_SECRET) {
         return this.jwtService.verify(token, {secret});
     }
-
 }
 
 

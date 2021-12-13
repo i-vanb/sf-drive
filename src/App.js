@@ -13,6 +13,7 @@ import "./styles/Sign.css"
 import "./styles/Header.css"
 import "./styles/About.css"
 import "./styles/Car.css"
+import "./styles/camera.css"
 
 import About from "./About/About";
 import Faq from "./Faq/Faq";
@@ -26,22 +27,15 @@ import BookingsContainer from "./Bookings/BookingsContainer";
 import CarsContainer from "./Cars/CarsContainer";
 import MessagesContainer from "./Messages/MessagesContainer";
 import MainContainer from "./Main/MainContainer";
-import {AuthTemp} from "./components/Temps/AuthTemp";
 import {CarCreate} from "./Cars/CarCreate";
-import {useQuery} from "@apollo/client";
-import {FETCH_All_CARS_QUERY} from "./utils/graphql-request";
-import {FETCH_CARS_BY_CITY_QUERY} from "./utils/graphql-request";
+import CarDetail from "./SearchCar/CarDetail";
+import CarRent from "./Cars/CarRent";
 
 function App() {
     const [isSignShow, setIsSignShow] = useState(false);
     const isAuth = useSelector(state => state.auth.isAuthorized);
     const user = useSelector(state => state.auth);
     let history = useHistory();
-
-    // const cars = useQuery(FETCH_All_CARS_QUERY)
-    // const cars = useQuery(FETCH_CARS_BY_CITY_QUERY, {
-    //     variables: {city: 'Челябинск'}
-    // })
 
 
     const dispatch = useDispatch();
@@ -65,6 +59,13 @@ function App() {
                     </Route>
                     <Route path="/car/create">
                         <CarCreate/>
+                    </Route>
+
+                    <Route path="/car/rent/:id">
+                        <CarRent />
+                    </Route>
+                    <Route path="/car/detail/:id">
+                        <CarDetail />
                     </Route>
                     <Route exact path="/messages">
                         <MessagesContainer />

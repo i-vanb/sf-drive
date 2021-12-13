@@ -1,5 +1,6 @@
-import {Body, Controller, Get, Post} from "@nestjs/common";
+import {Body, Controller, Get, Param, Post} from "@nestjs/common";
 import {UserService} from "./user.service";
+import {UserEntity} from "./user.entity";
 
 // it is needed only for testing
 @Controller("user")
@@ -19,6 +20,11 @@ export class UserController {
     @Post("update")
     update(@Body() user) {
         return this.userService.update(user)
+    }
+
+    @Get(":id")
+    findById(@Param() params):Promise<UserEntity> {
+        return this.userService.findById(params.id)
     }
 
     @Post("find")

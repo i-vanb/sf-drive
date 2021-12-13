@@ -8,6 +8,7 @@ export class FileService {
     constructor(private fileRepository: FileRepository) {}
 
     async create(file: File):Promise<FileEntity> {
+        console.log(file)
         const newFile = new FileEntity(file.fieldname, file.originalname, file.encoding, file.mimetype, file.buffer, file.size);
         return await this.fileRepository.create(newFile);
     }
@@ -18,5 +19,9 @@ export class FileService {
 
     async removeFile(id) {
         return await this.fileRepository.removeFile(id)
+    }
+
+    async getById(id) {
+        return await this.fileRepository.findOne(id)
     }
 }

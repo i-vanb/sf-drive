@@ -20,9 +20,12 @@ export const GET_USER_PHOTO = 'GET_USER_PHOTO'
 export const GET_USER_CARS = 'GET_USER_CARS'
 export const ADD_USER_DOC = 'ADD_USER_DOC'
 export const REMOVE_USER_DOC = 'REMOVE_USER_DOC'
+export const REMOVE_USER = 'REMOVE_USER'
 
 export const user = (state = initialState, action) => {
     switch (action.type) {
+        case REMOVE_USER:
+            return {...initialState}
         case GET_USER_CARS:
             return {
                 ...state,

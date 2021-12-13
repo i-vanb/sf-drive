@@ -23,6 +23,11 @@ export class UsersRepository {
         return await this.userRepository.findOne({mail: mail})
     }
 
+    async findUserById(id: string) {
+        const user = await this.userRepository.findByIds([id])
+        return user[0]
+    }
+
     async getUsers() {
         return await this.userRepository.find()
     }

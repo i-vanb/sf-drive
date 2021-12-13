@@ -4,7 +4,7 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 export class UserEntity {
     constructor(
         name, mail, phone, birth_date, passport_number, passport_date, passport_vendor,
-                passport_code, licence_number, licence_date, password
+                passport_code, licence_number, licence_date, password, photo
     ) {
         this.name = name
         this.mail = mail
@@ -17,6 +17,7 @@ export class UserEntity {
         this.licence_number = licence_number
         this.licence_date = licence_date
         this.password = password
+        this.photo = photo
     }
 
     // @ObjectIdColumn()
@@ -52,6 +53,9 @@ export class UserEntity {
 
     @Column()
     licence_date: string;
+
+    @Column()
+    photo: string;
 
     @Column()
     password?: string;

@@ -176,10 +176,52 @@
 .collage_car__add{
     display: none;
 }
+.collage_car__add__up {
+    height: 50%;
+    display: flex;
+    /*padding-bottom: 5px;*/
+    margin-bottom: 5px;
+}
+.collage_car__add__down {
+    position: relative;
+    height: 50%;
+    display: flex;
+    margin-top: 5px;
+    /*padding-top: 5px;*/
+}
+.collage_car__add__extra{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.collage_car__add__extra span{
+    display: flex;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background-color: #000;
+    color: #fff;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 147.3%;
+}
+
 .car_detail{
     position: relative;
     padding-top: 80px;
     margin-top: 100px;
+}
+@media(max-width: 1199px) {
+    .car_detail{
+        margin: 100px 80px;
+    }
 }
 .car_detail .register__step-back{
     left: 0;
@@ -190,19 +232,191 @@
 .collage_car__main img{
     width: 100%;
 }
+.collage-car__main__title{
+    /*font-family: Roboto;*/
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 120%;
+}
+.collage_car__main__price-wrapper{
+    display: flex;
+    flex-direction: row;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+.collage_car__main__price-card{
+    margin-right: 40px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 147.3%;
+    color: #8D8B99;
+}
+.collage_car__main__price-card_title{
+    color: #61A199;
+    /*font-family: Roboto;*/
+    /*font-style: normal;*/
+    /*font-weight: normal;*/
+    font-size: 24px;
+    line-height: 160%;
+}
 
 @media(min-width: 1024px){
     .collage_car {
         display: flex;
         flex-direction: row;
+        height: 484px;
+        overflow-y: hidden;
     }
     .collage_car__main{
         flex: 2;
         padding: 0;
+        margin-right: 10px;
+        max-width: 63%;
     }
     .collage_car__add{
         display: flex;
         flex-direction: column;
         flex: 1;
     }
+}
+
+.collage_car__main__desc-wrapper{
+
+}
+.collage_car__main__desc-title{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 120%;
+    color: #1B1B1B;
+    text-align: left;
+    margin-bottom: 20px;
+}
+.collage_car__main__desc-item{
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+}
+.collage_car__main__desc-item__left{
+    flex: 1;
+    font-size: 16px;
+    line-height: 147.3%;
+    color: #8D8B99;
+
+}
+.collage_car__main__desc-item__right{
+    flex: 2;
+}
+.collage_car__owner{
+    flex: 1;
+}
+.collage_car__owner-wrapper{
+    padding: 40px 0;
+    background-color: #F7F7F8;
+}
+.collage_car__owner__icon{
+    width: 180px;
+    height: 180px;
+    border-radius: 90px;
+    overflow: hidden;
+    margin: 0 auto 10px;
+}
+.collage_car__owner__name{
+    font-size: 24px;
+    margin-bottom: 2px;
+}
+.collage_car__owner__role{
+    color: #8D8B99;
+    font-size: 14px;
+    margin-bottom: 32px;
+}
+.collage_car__owner__btn{
+    color: #61A199;
+    font-size: 16px;
+}
+.section-line{
+    width: 100%;
+    border-bottom: #E0E0E0 1px solid;
+    margin: 30px 0 60px;
+}
+.grid-container3{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.grid-item{
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.grid-item>img{
+    margin-right: 20px;
+}
+.icon-line{
+    height: 19px;
+}
+.collage_car__main__reviews{
+    justify-content: flex-start;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 40px;
+}
+.collage_car__main__title{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+}
+.collage_car__main__subtitle{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.collage_car__main__reviews img{
+    width: 29px;
+}
+.collage_car__main__reviews span{
+    margin-left: 5px;
+}
+.collage_car__main__reviews span:last-child{
+    opacity: .4;
+}
+.collage_car__reviews-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+@media screen and (max-width: 900px) {
+    .collage_car__reviews-list{
+        grid-template-columns: 1fr;
+        /*grid-gap: 30px;*/
+    }
+}
+/*@media screen and (max-width: 1200px) {*/
+/*    .content__container{*/
+/*        margin: 0 50px;*/
+/*    }*/
+/*}*/
+
+.btn-group{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.btn-green{
+    padding: 15px 40px;
+    background-color: #61A199;
+    color: #fafafa;
+    border-radius: 5px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
 }

@@ -17,7 +17,7 @@ export const CarCreteStep3 = () => {
     const onFileLoadHandler = e => {
         const formData = new FormData()
         formData.append("file", e.target.files[0])
-        // console.dir(formData.get("file"))
+        console.dir(formData.get("file"))
 
         // const binaryData = [];
         // binaryData.push(e.target.files[0]);

@@ -32,7 +32,7 @@ export const CarCreteStep2 = () => {
     const car = useSelector(state => state.car)
     const {isLosfix, isAirbags, isHeater, isAuxCable, isBluetooth, isCruise, isConditioning, isMultimedia, isNavigation,
         isSeatsVentilation, isSeatsHeat, isRoofRack, isParktronic, isCamera, isChildrenSeat, isCarDelivery, isFreePlace,
-        isFuel, childrenSeatPrice, carDelivery, freePlace, fuel} = car
+        isFuel, childrenSeatPrice, carDeliveryPrice, freePlacePrice, fuelPrice} = car
 
     const updateCarHandler = update => {
         dispatch(setCar(update))
@@ -57,53 +57,53 @@ export const CarCreteStep2 = () => {
             <form className="register__form">
                 <h2 className="register__title">Опции автомобиля</h2>
                 <div className="form-section-wrapper">
-                    <CheckBoxSlider icon={losfix} isActive={isLosfix} setIsActive={()=>toggleCarHandler(isLosfix)} label="Крепления Iosfix" />
-                    <CheckBoxSlider icon={airbags} isActive={isAirbags} setIsActive={()=>toggleCarHandler(isAirbags)} label="Подушки безопасности" />
-                    <CheckBoxSlider icon={heater} isActive={isHeater} setIsActive={()=>toggleCarHandler(isHeater)} label="Автономный подогреватель" />
-                    <CheckBoxSlider icon={auxcable} isActive={isAuxCable} setIsActive={()=>toggleCarHandler(isAuxCable)} label="AUX-кабель" />
-                    <CheckBoxSlider icon={bluetooth} isActive={isBluetooth} setIsActive={()=>toggleCarHandler(isBluetooth)} label="Поддержка Bluetooth" />
-                    <CheckBoxSlider icon={cruise} isActive={isCruise} setIsActive={()=>toggleCarHandler(isCruise)} label="Круиз-контроль" />
-                    <CheckBoxSlider icon={conditioning} isActive={isConditioning} setIsActive={()=>toggleCarHandler(isConditioning)} label="Кондиционер" />
-                    <CheckBoxSlider icon={multimedia} isActive={isMultimedia} setIsActive={()=>toggleCarHandler(isMultimedia)} label="Мультимедия" />
-                    <CheckBoxSlider icon={navigation} isActive={isNavigation} setIsActive={()=>toggleCarHandler(isNavigation)} label="Навигация" />
-                    <CheckBoxSlider icon={seats_ventilation} isActive={isSeatsVentilation} setIsActive={()=>toggleCarHandler(isSeatsVentilation)} label="Вентиляция сидений" />
-                    <CheckBoxSlider icon={seats_heat} isActive={isSeatsHeat} setIsActive={()=>toggleCarHandler(isSeatsHeat)} label="Подогрев сидений" />
-                    <CheckBoxSlider icon={roof_rack} isActive={isRoofRack} setIsActive={()=>toggleCarHandler(isRoofRack)} label="Багажник на крыше" />
-                    <CheckBoxSlider icon={parktronic} isActive={isParktronic} setIsActive={()=>toggleCarHandler(isParktronic)} label="Парктроники" />
-                    <CheckBoxSlider icon={camera} isActive={isCamera} setIsActive={()=>toggleCarHandler(isCamera)} label="Камера заднего вида" />
+                    <CheckBoxSlider icon={losfix} isActive={isLosfix} setIsActive={()=>toggleCarHandler('isLosfix')} label="Крепления Iosfix" />
+                    <CheckBoxSlider icon={airbags} isActive={isAirbags} setIsActive={()=>toggleCarHandler('isAirbags')} label="Подушки безопасности" />
+                    <CheckBoxSlider icon={heater} isActive={isHeater} setIsActive={()=>toggleCarHandler('isHeater')} label="Автономный подогреватель" />
+                    <CheckBoxSlider icon={auxcable} isActive={isAuxCable} setIsActive={()=>toggleCarHandler('isAuxCable')} label="AUX-кабель" />
+                    <CheckBoxSlider icon={bluetooth} isActive={isBluetooth} setIsActive={()=>toggleCarHandler('isBluetooth')} label="Поддержка Bluetooth" />
+                    <CheckBoxSlider icon={cruise} isActive={isCruise} setIsActive={()=>toggleCarHandler('isCruise')} label="Круиз-контроль" />
+                    <CheckBoxSlider icon={conditioning} isActive={isConditioning} setIsActive={()=>toggleCarHandler('isConditioning')} label="Кондиционер" />
+                    <CheckBoxSlider icon={multimedia} isActive={isMultimedia} setIsActive={()=>toggleCarHandler('isMultimedia')} label="Мультимедия" />
+                    <CheckBoxSlider icon={navigation} isActive={isNavigation} setIsActive={()=>toggleCarHandler('isNavigation')} label="Навигация" />
+                    <CheckBoxSlider icon={seats_ventilation} isActive={isSeatsVentilation} setIsActive={()=>toggleCarHandler('isSeatsVentilation')} label="Вентиляция сидений" />
+                    <CheckBoxSlider icon={seats_heat} isActive={isSeatsHeat} setIsActive={()=>toggleCarHandler('isSeatsHeat')} label="Подогрев сидений" />
+                    <CheckBoxSlider icon={roof_rack} isActive={isRoofRack} setIsActive={()=>toggleCarHandler('isRoofRack')} label="Багажник на крыше" />
+                    <CheckBoxSlider icon={parktronic} isActive={isParktronic} setIsActive={()=>toggleCarHandler('isParktronic')} label="Парктроники" />
+                    <CheckBoxSlider icon={camera} isActive={isCamera} setIsActive={()=>toggleCarHandler('isCamera')} label="Камера заднего вида" />
                 </div>
                 <h2 className="register__title">Дополнительные услуги</h2>
                 <div className="form-section-wrapper">
                     <CheckBoxInput  isActive={isChildrenSeat}
-                                    setIsActive={()=>toggleCarHandler(isChildrenSeat)}
+                                    setIsActive={()=>toggleCarHandler('isChildrenSeat')}
                                     title="Детское кресло"
                                     desc="Сдавайте кресло в аренду и получайте дополнительный заработок"
                                     inputValue={childrenSeatPrice}
-                                    setInputValue={e=>updateCarHandler({childrenSeatPrice: e.target.value})}
+                                    setInputValue={e=>updateCarHandler({childrenSeatPrice: e})}
                                     placeholder="1000"
                     />
                     <CheckBoxInput  isActive={isCarDelivery}
-                                    setIsActive={()=>toggleCarHandler(isCarDelivery)}
+                                    setIsActive={()=>toggleCarHandler('isCarDelivery')}
                                     title="Доставка автомобиля"
                                     desc="Привезите автомобиль в удобное для арендатора место и получите доход"
-                                    inputValue={carDelivery}
-                                    setInputValue={e=>updateCarHandler({carDelivery: e.target.value})}
+                                    inputValue={carDeliveryPrice}
+                                    setInputValue={e=>updateCarHandler({carDeliveryPrice: e})}
                                     placeholder="1000"
                     />
                     <CheckBoxInput  isActive={isFreePlace}
-                                    setIsActive={()=>toggleCarHandler(isFreePlace)}
+                                    setIsActive={()=>toggleCarHandler('isFreePlace')}
                                     title="Завершение аренды в любом месте"
                                     desc="Заберите автомобиль в удобном для арендатора месте за доп. доход"
-                                    inputValue={freePlace}
-                                    setInputValue={e=>updateCarHandler({freePlace: e.target.value})}
+                                    inputValue={freePlacePrice}
+                                    setInputValue={e=>updateCarHandler({freePlacePrice: e})}
                                     placeholder="1000"
                     />
                     <CheckBoxInput  isActive={isFuel}
-                                    setIsActive={()=>toggleCarHandler(isFuel)}
+                                    setIsActive={()=>toggleCarHandler('isFuel')}
                                     title="Полный бак"
                                     desc="Заправьте полный бак перед сдачей в аренду"
-                                    inputValue={fuel}
-                                    setInputValue={e=>updateCarHandler({fuel: e.target.value})}
+                                    inputValue={fuelPrice}
+                                    setInputValue={e=>updateCarHandler({fuelPrice: e})}
                                     placeholder="1000"
                     />
 
@@ -141,6 +141,8 @@ export const CarCreteStep2 = () => {
                     }
                 </button>
             </div>
+
+
         </main>
     )
 }

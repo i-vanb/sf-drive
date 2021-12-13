@@ -21,6 +21,29 @@ type Car {
     city: String!
     docs: [String!]!
     photos: [String!]!
+    isLosfix: Boolean!
+    isAirbags: Boolean!
+    isHeater: Boolean!
+    isAuxCable: Boolean!
+    isBluetooth: Boolean!
+    isCruise: Boolean!
+    isConditioning: Boolean!
+    isMultimedia: Boolean!
+    isNavigation: Boolean!
+    isSeatsVentilation: Boolean!
+    isSeatsHeat: Boolean!
+    isRoofRack: Boolean!
+    isParktronic: Boolean!
+    isCamera: Boolean!
+    isChildrenSeat: Boolean!
+    isCarDelivery: Boolean!
+    isFreePlace: Boolean!
+    isFuel: Boolean!
+    childrenSeatPrice: Int!
+    carDeliveryPrice: Int!
+    freePlacePrice: Int!
+    fuelPrice: Int!
+
 }
 
 type Query {
@@ -28,6 +51,8 @@ type Query {
     findById(id: ID!): Car
     findAllCarsByMark(mark: String!): [Car!]!
     findAllCarsByCity(city: String!): [Car!]!
+    allBooking(id: Int!): [Booking!]!
+    findBookingById(id: Int!): Booking!
 }
 
 input CreateCarInput {
@@ -52,8 +77,74 @@ input CreateCarInput {
     city: String!
     docs: [String!]!
     photos: [String!]!
+    isLosfix: Boolean!
+    isAirbags: Boolean!
+    isHeater: Boolean!
+    isAuxCable: Boolean!
+    isBluetooth: Boolean!
+    isCruise: Boolean!
+    isConditioning: Boolean!
+    isMultimedia: Boolean!
+    isNavigation: Boolean!
+    isSeatsVentilation: Boolean!
+    isSeatsHeat: Boolean!
+    isRoofRack: Boolean!
+    isParktronic: Boolean!
+    isCamera: Boolean!
+    isChildrenSeat: Boolean!
+    isCarDelivery: Boolean!
+    isFreePlace: Boolean!
+    isFuel: Boolean!
+    childrenSeatPrice: Int!
+    carDeliveryPrice: Int!
+    freePlacePrice: Int!
+    fuelPrice: Int!
 }
 
 type Mutation {
     createCar(createCarInput: CreateCarInput!): Car!
+    createBooking(createBookingInput: CreateBookingInput!): Booking!
+}
+
+type Booking {
+    id: ID!
+    passengerID: Int!
+    carID: Int!
+    ownerID: Int!
+    begin: String!
+    end: String!
+    duration: String!
+    description: String!
+    totalPrice: Int!
+    isCarDelivery: Boolean!
+    carDeliveryPrice: Int!
+    isChildSeat: Boolean!
+    childSeatPrice: Int!
+    isAnyPlaceEnd: Boolean!
+    anyPlaceEndPrice: Int!
+    isArchived: Boolean!
+    mark: String!
+    model: String!
+    year: Int!
+}
+
+input CreateBookingInput {
+    passengerID: Int!
+    carID: Int!
+    ownerID: Int!
+    begin: String!
+    end: String!
+    duration: String!
+    description: String!
+    isCarDelivery: Boolean!
+    totalPrice: Int!
+    carDeliveryPrice: Int!
+    isChildSeat: Boolean!
+    childSeatPrice: Int!
+    isAnyPlaceEnd: Boolean!
+    anyPlaceEndPrice: Int!
+    isArchived: Boolean!
+    mark: String!
+    model: String!
+    year: Int!
 }

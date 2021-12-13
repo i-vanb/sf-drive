@@ -6,7 +6,6 @@ import {NavLink, useHistory} from "react-router-dom";
 
 export const CarCreteStep1 = () => {
     const [isLoading, setIsLoading] = useState(false)
-
     const dispatch = useDispatch()
     const history = useHistory()
     const car = useSelector(state => state.car)

@@ -1,0 +1,17 @@
+.c-camera-feed{
+    position: relative;
+}
+.c-camera-feed__viewer{}
+.c-camera-feed__viewer>video{
+    /*width: 100%;*/
+}
+.c-camera-feed__stage{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+}
+.c-camera-feed__stage canvas{
+    /*width: 430px;*/
+    /*height: 320px;*/
+}

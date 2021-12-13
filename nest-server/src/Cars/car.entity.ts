@@ -2,13 +2,13 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 
 @Entity()
-// @ObjectType()
 export class CarsEntity {
     constructor(
         ownerId, mark, model, number, year, color, vin, engine_type,
         volume, power_ls, power_kvt, transmission, run, pts, sts,
-        price, price_3d, price_5d, city, docs, photos
-        // type, drive,  imgSM, options, photos,
+        price, price_3d, price_5d, city, docs, photos, isLosfix, isAirbags, isHeater, isAuxCable, isBluetooth, isCruise, isConditioning, isMultimedia, isNavigation,
+        isSeatsVentilation, isSeatsHeat, isRoofRack, isParktronic, isCamera, isChildrenSeat, isCarDelivery, isFreePlace,
+        isFuel, childrenSeatPrice, carDeliveryPrice, freePlacePrice, fuelPrice
     ) {
         this.mark = mark
         this.model = model
@@ -31,100 +31,160 @@ export class CarsEntity {
         this.city = city
         this.docs = docs
         this.photos = photos
-
-        // this.type = type
-        // this.drive = drive
-        // this.imgSM = imgSM
-        // this.options = options
-        // this.photos = photos
+        this.isLosfix = isLosfix
+        this.isAirbags = isAirbags
+        this.isHeater = isHeater
+        this.isAuxCable = isAuxCable
+        this.isBluetooth = isBluetooth
+        this.isCruise = isCruise
+        this.isConditioning = isConditioning
+        this.isMultimedia = isMultimedia
+        this.isNavigation = isNavigation
+        this.isSeatsVentilation = isSeatsVentilation
+        this.isSeatsHeat = isSeatsHeat
+        this.isRoofRack = isRoofRack
+        this.isParktronic = isParktronic
+        this.isCamera = isCamera
+        this.isChildrenSeat = isChildrenSeat
+        this.isCarDelivery = isCarDelivery
+        this.isFreePlace = isFreePlace
+        this.isFuel = isFuel
+        this.childrenSeatPrice = childrenSeatPrice
+        this.carDeliveryPrice = carDeliveryPrice
+        this.freePlacePrice = freePlacePrice
+        this.fuelPrice = fuelPrice
     }
 
-    // @Field(type => ID)
-    // @ObjectIdColumn()
     @PrimaryGeneratedColumn()
     id: number
 
-    // @Field()
     @Column()
     ownerId: number
 
-    // @Field()
     @Column()
     number: string
 
-    // @Field()
     @Column()
     pts: string
 
-    // @Field()
     @Column()
     sts: string
 
-    // @Field()
     @Column()
     power_ls: string
 
-    // @Field()
     @Column()
     power_kvt: string
 
-    // @Field()
     @Column()
     mark: string;
 
-    // @Field()
     @Column()
     model: string;
 
-   // @Field()
     @Column()
     vin: string;
 
-    // @Field()
     @Column()
     color: string;
 
-    // @Field()
     @Column()
     volume: string;
 
-    // @Field()
     @Column()
     year: number;
 
-    // @Field()
     @Column()
     price: number;
 
-    // @Field()
     @Column()
     price_3d: number;
 
-    // @Field()
     @Column()
     price_5d: number;
 
     @Column()
     city: string;
 
-    // @Field()
     @Column()
     transmission: string;
 
-    // @Field()
     @Column()
     engine_type: string;
 
-    // @Field()
     @Column()
     run: number;
 
-    // @Column({type: "set"})
-    // @Column()
     @Column("simple-array")
     docs
 
     @Column("simple-array")
-    // @Column()
     photos
+
+    @Column()
+    isLosfix: boolean;
+
+    @Column()
+    isAirbags: boolean;
+
+    @Column()
+    isHeater: boolean;
+
+    @Column()
+    isAuxCable: boolean;
+
+    @Column()
+    isBluetooth: boolean;
+
+    @Column()
+    isCruise: boolean;
+
+    @Column()
+    isConditioning: boolean;
+
+    @Column()
+    isMultimedia: boolean;
+
+    @Column()
+    isNavigation: boolean;
+
+    @Column()
+    isSeatsVentilation: boolean;
+
+    @Column()
+    isSeatsHeat: boolean;
+
+    @Column()
+    isRoofRack: boolean;
+
+    @Column()
+    isParktronic: boolean;
+
+    @Column()
+    isCamera: boolean;
+
+    @Column()
+    isChildrenSeat: boolean;
+
+    @Column()
+    isCarDelivery: boolean;
+
+    @Column()
+    isFreePlace: boolean;
+
+    @Column()
+    isFuel: boolean;
+
+    @Column()
+    childrenSeatPrice: number;
+
+    @Column()
+    carDeliveryPrice: number;
+
+    @Column()
+    freePlacePrice: number;
+
+    @Column()
+    fuelPrice: number;
+
 }

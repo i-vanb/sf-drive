@@ -40,9 +40,9 @@ const initialState = {
     isFreePlace: false,
     isFuel: false,
     childrenSeatPrice: '',
-    carDelivery: '',
-    freePlace: '',
-    fuel: '',
+    carDeliveryPrice: '',
+    freePlacePrice: '',
+    fuelPrice: '',
     city: '',
     isCreated: false,
     docs: [],
@@ -54,11 +54,23 @@ export const RESET_CAR = "RESET_CAR"
 export const SET_CAR_ERROR = "SET_CAR_ERROR"
 export const SET_CAR_PHOTO = "SET_CAR_PHOTO"
 export const SET_CAR_DOC = "SET_CAR_DOC"
+export const SET_CAR_PHOTO_FILES = "SET_CAR_PHOTO_FILES"
+export const SET_CAR_DOC_FILES = "SET_CAR_DOC_FILES"
 export const TOGGLE_CAR_CHECK = "TOGGLE_CAR_CHECK"
 export const SET_CAR_CREATED = "SET_CAR_CREATED"
 
 export const car = (state = initialState, action) => {
     switch (action.type) {
+        case SET_CAR_DOC_FILES:
+            return {
+                ...state,
+                doc_files: action.payload
+            }
+        case SET_CAR_PHOTO_FILES:
+            return {
+                ...state,
+                photo_files: action.payload
+            }
         case SET_CAR_PHOTO:
             return {
                 ...state,
@@ -93,6 +105,8 @@ export const car = (state = initialState, action) => {
                 ...action.payload
             }
         case RESET_CAR:
+            state.doc_files && delete state.doc_files
+            state.photo_files && delete state.photo_files
             return {
                 ...initialState,
                 ownerId: action.payload

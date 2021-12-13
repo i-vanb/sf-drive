@@ -1,0 +1,23 @@
+.review__container{
+    margin-bottom: 50px;
+}
+.review__header{
+    display: flex;
+    flex-direction: row;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 147.3%;
+}
+.review__header__date{
+    font-size: 14px;
+    opacity: .4;
+}
+.review__header__icon>img{
+    max-width: 55px;
+    max-height: 55px;
+    margin-right: 10px;
+}
+.review__content{
+    text-align: initial;
+}

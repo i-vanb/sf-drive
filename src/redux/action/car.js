@@ -7,12 +7,8 @@ import {
     SET_CAR_CREATED,
     SET_CAR_DOC
 } from "../reducer/car";
-import {setLoading} from "./system";
 import {fetchData} from "../../api";
-import {setAuthorized, setSignUpError, setTokenPair} from "./auth";
 import {getUserCars} from "./user";
-import {useMutation, useQuery} from "@apollo/client";
-import {CREATE_CAR_REQUEST, FETCH_CARS_BY_CITY_QUERY} from "../../utils/graphql-request";
 
 export const setCar = update => ({type: SET_CAR, payload: update})
 export const toggleCar = name => ({type: TOGGLE_CAR_CHECK, payload: name})
@@ -23,15 +19,11 @@ export const setCreated = is => ({type: SET_CAR_CREATED, payload: is})
 export const setCarPhoto = file => ({type: SET_CAR_PHOTO, payload: file})
 export const setCarDoc = file => ({type: SET_CAR_DOC, payload: file})
 
-export const resetCar = ownerId => dispatch => {
-    console.log('ownerID is here - ', ownerId)
+export const resetCar = (ownerId = '') => dispatch => {
     dispatch({type: RESET_CAR, payload: ownerId})
 }
 
-export const createCarInGraphQL = async (car) => {
-
-    // console.log(await createCar(car))
-}
+export const createCarInGraphQL = async (car) => {}
 
 export const transportCarToServer = car => {
     return {
@@ -44,6 +36,7 @@ export const transportCarToServer = car => {
         number: car.number,
         ownerId: car.ownerId.toString(),
         photos: car.photos.map(i => i.toString()),
+        options: car.options.map(i => i.toString()),
         power_kvt: car.power_kvt,
         power_ls: car.power_ls,
         price: parseInt(car.price),
@@ -75,7 +68,7 @@ export const createFilesArray = filesArray => async dispatch => {
     return await Promise.all(files)
 }
 
-export const createCar = (car) => async dispatch => {
+export const createCar = car => async dispatch => {
     const resDocs = await dispatch(createFilesArray(car.docs))
     const resPhotos = await dispatch(createFilesArray(car.photos))
 
@@ -90,4 +83,49 @@ export const createCar = (car) => async dispatch => {
         dispatch(setCreated(true))
         dispatch(getUserCars(car.ownerId))
     } else {}
+}
+
+export const getImageTEST = async (id, dispatch) => {
+    const res = await fetchData({
+        method: "get",
+        url: `http://localhost:8000/files/car/${id}`,
+        dispatch
+    })
+    if(res.status === 200) {
+        return res.data
+    }
+}
+
+const getArrayFiles = async (id, dispatch) => {
+    const ids = typeof id === "object" ? id : [id]
+    const files = ids.map(async i => {
+        const res = await fetchData({
+            method: "get",
+            url: `http://localhost:8000/files/car/${i}`,
+            dispatch
+        })
+        if(res.status === 200) {
+            return res.data[0]
+        }
+    })
+
+    return await Promise.all(files)
+}
+
+export const getFiles = (id, type) => async dispatch => {
+    const files = await getArrayFiles(id, dispatch)
+    // const ids = typeof id === "object" ? id : [id]
+    // const files = ids.map(async i => {
+    //     const res = await fetchData({
+    //         method: "get",
+    //         url: `http://localhost:8000/files/car/${i}`,
+    //         dispatch
+    //     })
+    //     if(res.status === 200) {
+    //         return res.data
+    //     }
+    // })
+    //
+    // await Promise.all(files)
+    dispatch({type: `SET_CAR_${type.toUpperCase()}_FILES`, payload: files})
 }

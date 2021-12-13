@@ -1,0 +1,81 @@
+.calendar{
+    display: flex;
+    flex-direction: row;
+
+}
+.calendar__container{
+    flex: 1;
+    margin: 0 60px;
+}
+.calendar__header{
+    margin-bottom: 25px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 147.3%;
+}
+.calendar__days__header{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 147.3%;
+    opacity: .4;
+    margin-bottom: 15px;
+}
+.calendar__days__list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 16px;
+    line-height: 147.3%;
+}
+.calendar__days__list-item{
+    /*margin-bottom: 15px;*/
+    position: relative;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.calendar__days__list-item.disabled{
+    opacity: .2;
+}
+.calendar__days__list-item.start{
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+    /*background-color: #61A199;*/
+    background-color: rgba(97, 161, 153, .2)
+    /*opacity: .2;*/
+}
+
+.calendar__days__list-item.active{
+    /*background-color: #61A199;*/
+    /*opacity: .2;*/
+    background-color: rgba(97, 161, 153, .2)
+}
+
+.calendar__days__list-item.finish{
+    border-bottom-right-radius: 50%;
+    border-top-right-radius: 50%;
+    background-color: rgba(97, 161, 153, .2)
+    /*opacity: .2;*/
+}
+
+.calendar__days__list-item.past{
+    opacity: .2;
+    text-decoration: line-through;
+}
+.active-number{
+    background-color: #61A199;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

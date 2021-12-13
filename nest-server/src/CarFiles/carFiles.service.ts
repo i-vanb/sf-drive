@@ -16,6 +16,10 @@ export class CarFilesService {
         return await this.fileRepository.getFiles();
     }
 
+    async getById(id):Promise<CarFilesEntity[]> {
+        return await this.fileRepository.findOne(id)
+    }
+
     async removeFile(id) {
         return await this.fileRepository.removeFile(id)
     }

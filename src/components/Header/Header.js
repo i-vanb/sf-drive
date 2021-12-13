@@ -13,6 +13,7 @@ const Header = props => {
 
     const dispatch = useDispatch();
     const isAuth = useSelector(state => state.auth.isAuthorized);
+    const user = useSelector(state => state.user)
 
     const signOutHandler = () => {
         dispatch(logout());
@@ -20,7 +21,7 @@ const Header = props => {
 
     return (
         <div className="header">
-            <a className="header__logo" href="/"><img src={logo} alt="logo" width="115px"/></a>
+            <Link className="header__logo" to="/"><img src={logo} alt="logo" width="115px"/></Link>
             <nav className="header__nav is-desktop">
             {isAuth
                 ?
@@ -37,6 +38,8 @@ const Header = props => {
                 </>
             }
             </nav>
+            {/*<img src={`data:${photo.mimetype};base64,${Buffer.from(photo.buffer).toString('base64')}`} />*/}
+            {isAuth && user.avatar && <div className="avatar-wrapper"><img src={`data:${user.avatar[0].mimetype};base64,${Buffer.from(user.avatar[0].buffer).toString('base64')}`} className="user-avatar" /></div>}
             {isAuth
                 ? <button onClick={signOutHandler}
                           className="header__authBtn is-animated is-desktop">Выйти</button>
@@ -46,8 +49,8 @@ const Header = props => {
             {!isMobileMenuShow
             &&
             <div id="burger-menu" className="header__menu-icon is-mobile is-active">
-                <button className="btn-opacity" onClick={() => setIsMobileMenuShow(true)}><img src={burgerMenuIcon}
-                                                                                               alt="logo"/></button>
+                <button className="btn-opacity" onClick={() => setIsMobileMenuShow(true)}>
+                    <img src={burgerMenuIcon} alt="logo"/></button>
             </div>
             }
             {isMobileMenuShow &&

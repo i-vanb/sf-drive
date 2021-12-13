@@ -10,6 +10,6 @@ export interface User {
     licence_number: string,
     licence_date: string,
     password?: string,
-    photo: object,
+    photo: string,
     docs: object
 }

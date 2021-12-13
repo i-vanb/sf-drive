@@ -3,15 +3,15 @@ import {resetLoading, setLoading} from "./redux/action/system";
 
 
 export const fetchData = ({method, url, options, dispatch}) => {
-    dispatch(setLoading())
+    dispatch && dispatch(setLoading())
 
     const data = axios[method](url, options)
         .then((data)=>{
-            dispatch(resetLoading())
+            dispatch && dispatch(resetLoading())
             return data
         })
         .catch(({response})=>{
-            dispatch(resetLoading())
+            dispatch && dispatch(resetLoading())
             return response
         })
     return data

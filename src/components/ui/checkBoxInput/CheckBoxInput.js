@@ -2,7 +2,7 @@ import React from 'react';
 import "./style.css"
 
 
-export const CheckBoxInput = ({isActive, setIsActive, title, desc, inputValue, setInputValue, placeholder}) => {
+export const CheckBoxInput = ({isActive, setIsActive, title, desc, inputValue, setInputValue, placeholder, inputLock}) => {
 
     const setIsActiveHandler = () => {
         if (!isActive) {
@@ -28,8 +28,10 @@ export const CheckBoxInput = ({isActive, setIsActive, title, desc, inputValue, s
             <div className="checkbox-input__active-wrapper">
                 <div
                     className={inputValue || isActive ? "checkbox-input__label__input active" : "checkbox-input__label__input"}>
-                    <input className={isActive ? "active" : ""} value={inputValue} onChange={onChangeHandler}
-                           placeholder={placeholder}/>
+                    {inputLock
+                        ? <span className="input-locked">{inputValue}</span>
+                        : <input className={isActive ? "active" : ""} value={inputValue} onChange={onChangeHandler}
+                            placeholder={placeholder}/>}
                 </div>
                 <div onClick={setIsActiveHandler} className={`checkbox-input__slider ${!!isActive && "active"}`}></div>
             </div>

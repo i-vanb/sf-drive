@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post, Query, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Query, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {CarFilesService} from "./carFiles.service";
 import {FileInterceptor} from "@nestjs/platform-express";
 
@@ -11,8 +11,6 @@ export class CarFilesController {
     @UseInterceptors(FileInterceptor("file"))
             // {dest: './uploads'} // second param in fileinterceptor
     uploadSingle(@UploadedFile() file) {
-        console.log(file)
-        // console.log(typeof file)
         return this.fileService.create(file)
     }
     // create(@Body() file) {return this.fileService.create(file)}
@@ -20,5 +18,10 @@ export class CarFilesController {
     @Get("all")
     getAll() {
         return this.fileService.getAll()
+    }
+
+    @Get(':id')
+    findOne(@Param() params) {
+        return this.fileService.getById(params.id)
     }
 }

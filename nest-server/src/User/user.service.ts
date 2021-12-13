@@ -9,13 +9,17 @@ export class UserService {
 
     async create(user: User):Promise<UserEntity> {
         const newUser = new UserEntity(user.name, user.mail, user.phone, user.birth_date, user.passport_number,
-            user.passport_date, user.passport_vendor, user.passport_code, user.licence_number, user.licence_date, user.password
+            user.passport_date, user.passport_vendor, user.passport_code, user.licence_number, user.licence_date, user.password, user.photo
         );
         return await this.userRepository.createUser(newUser);
     }
 
     async findByMail(mail: string):Promise<UserEntity> {
         return await this.userRepository.findUser(mail)
+    }
+
+    async findById(id: string):Promise<UserEntity> {
+        return await this.userRepository.findUserById(id)
     }
 
     async getAll():Promise<UserEntity[]> {

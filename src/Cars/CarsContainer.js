@@ -7,11 +7,8 @@ import {getUserCars} from "../redux/action/user";
 
 export const CarsContainer = props => {
     const {auth, user} = props
-    // if(!auth.userID) return null
-    useEffect(()=>{
 
-    }, [])
-
+    useEffect(()=>{}, [])
 
     return (
         <div className="car">
@@ -32,7 +29,6 @@ export const CarsContainer = props => {
                                         <div className="user-cars__item__desc">
                                             <div>{e.mark} {e.model}</div>
                                             <div>{e.price} руб в сутки</div>
-
                                         </div>
                                     </div>
                                 )

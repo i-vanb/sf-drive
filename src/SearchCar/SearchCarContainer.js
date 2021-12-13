@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import Footer from "../components/Footer";
 import DatePicker from "react-datepicker"
@@ -10,9 +11,10 @@ import {CarItem} from "./CarItem";
 import {CarDetail} from "./CarDetail";
 import {useQuery} from "@apollo/client";
 import {FETCH_All_CARS_QUERY, FETCH_CARS_BY_CITY_QUERY} from "../utils/graphql-request";
+import {compose} from "redux";
 
 
-const SearchCarContainer = () => {
+const SearchCarContainer = props => {
     const [state, setState] = useState({
         city: "",
         dateBegin: "",
@@ -37,12 +39,9 @@ const SearchCarContainer = () => {
     }
 
     const onDetailHandler = car => {
-        setState({...state, detail: true, carItem: car})
+        props.history.push(`/car/detail/${car.id}`)
     }
 
-    if(state.detail) {
-        return <CarDetail {...state.carItem} onBack={backFromDetailHandler}/>
-    }
     return(
         <>
             <SearchCar onSearch={filterHandler}/>
@@ -56,8 +55,8 @@ const mapStateToProps = state => ({
     state: state.auth
 })
 
-export default connect(mapStateToProps, {})(SearchCarContainer)
-
+// export default connect(mapStateToProps, {})(SearchCarContainer)
+export default compose(withRouter, connect(mapStateToProps, {}))(SearchCarContainer)
 
 export const CarsList = ({city, onDetail}) => {
     const {loading, data} = useQuery(FETCH_CARS_BY_CITY_QUERY, {

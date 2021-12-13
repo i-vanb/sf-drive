@@ -294,9 +294,9 @@
     color: #B4B5BD;
 }
 .imageWrapper{
-    background-color: black;
-    width: 300px;
-    height: 300px;
+    /*background-color: black;*/
+    width: 430px;
+    height: 320px;
     margin: 10px auto 50px;
     text-align: center;
 }
@@ -329,4 +329,28 @@
     height: 100%;
     opacity: 0;
     position: absolute;
+}
+.btn__add-file{
+    position: relative;
+    margin: 0 20px 40px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    color: #61A199;
+    display: inline-block;
+}
+.btn__add-file.inactive{
+    color: gray;
+}
+.btn__add-file input{
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    opacity: 0;
+}
+#video{
+    width: 100%;
 }
