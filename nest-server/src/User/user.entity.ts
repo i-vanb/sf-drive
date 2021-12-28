@@ -55,9 +55,8 @@ export class UserEntity {
     licence_date: string;
 
     @Column()
-    photo: string;
+    photo: number;
 
     @Column()
     password?: string;
-
 }

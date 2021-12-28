@@ -13,11 +13,15 @@ import {CarFilesModule} from "./CarFiles/carFiles.module";
 import {MessagesGateway} from './messages/messages.gateway';
 import {BookingModule} from "./Booking/booking.module";
 import {BookingResolver} from "./Booking/booking.resolver";
+import {MessageModule} from "./messages/message.module";
+import {ChatModule} from "./chats/chat.module";
 
 
 @Module({
     imports: [
         CarModule,
+        MessageModule,
+        ChatModule,
         RideModule,
         BookingModule,
         TypeOrmModule.forRoot({

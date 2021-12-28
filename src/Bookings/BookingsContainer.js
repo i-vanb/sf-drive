@@ -19,7 +19,6 @@ const BookingsContainer = props => {
         variables: {id: auth.userID}
     })
 
-    console.log(loading, data)
     useEffect(()=>{
         getAllBooking(auth.userID)
     }, [])

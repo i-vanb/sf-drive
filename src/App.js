@@ -30,6 +30,8 @@ import MainContainer from "./Main/MainContainer";
 import {CarCreate} from "./Cars/CarCreate";
 import CarDetail from "./SearchCar/CarDetail";
 import CarRent from "./Cars/CarRent";
+import {getNewMessage, getNotification} from "./redux/action/message";
+import {getWebSocket} from "./redux/action/system";
 
 function App() {
     const [isSignShow, setIsSignShow] = useState(false);
@@ -42,6 +44,13 @@ function App() {
     useEffect(()=>{
         dispatch(authMe());
         }, [])
+
+    useEffect(()=>{
+        if(user.isAuthorized) {
+            dispatch(getWebSocket(user.userID))
+            console.log(user)
+        }
+    }, [user])
 
     return (
         <>

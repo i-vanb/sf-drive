@@ -12,8 +12,8 @@ import {useHistory} from "react-router-dom";
 
 export const Register = () => {
     const state = useSelector(state => state.user)
-    const {birthDate, datePassport, dateLicence, name, mail, phone, numPassport, orgPassport,
-        codePassport, numLicence, password, repeatPassword} = state
+    const {birth_date, passport_date, licence_date, name, mail, phone, passport_number, passport_vendor,
+        passport_code, licence_number, password, repeatPassword} = state
 
     const dispatch = useDispatch();
     const history = useHistory()
@@ -52,7 +52,7 @@ export const Register = () => {
                 </label>
                 <label className="register__blockInput">
                     <span className="register__blockInput__title">Дата рождения</span>
-                    <DatePicker className="datePicker" selected={birthDate} onChange={date => dispatch(setUserData({birthDate: date}))}/>
+                    <DatePicker className="datePicker" selected={birth_date} onChange={date => dispatch(setUserData({birth_date: date}))}/>
                     <img src={calendarIcon} className="calendarIcon"/>
                 </label>
                 <label className="register__blockInput">
@@ -68,30 +68,30 @@ export const Register = () => {
                 <h2 className="register__title">Паспорт</h2>
                 <label className="register__blockInput">
                     <span className="register__blockInput__title">Серия и номер</span>
-                    <Input name='numPassport' placeholder="0000 000000"/>
+                    <Input name='passport_number' placeholder="0000 000000"/>
                 </label>
                 <label className="register__blockInput">
                     <span className="register__blockInput__title">Дата выдачи</span>
-                    <DatePicker className="datePicker" selected={datePassport}
-                                onChange={date => dispatch(setUserData({datePassport: date}))}/>
+                    <DatePicker className="datePicker" selected={passport_date}
+                                onChange={date => dispatch(setUserData({passport_date: date}))}/>
                     <img src={calendarIcon} className="calendarIcon"/>
                 </label>
                 <label className="register__blockInput">
                     <span className="register__blockInput__title">Кем выдан</span>
-                    <Input name='orgPassport' placeholder="Название органа выдавшего паспорт"/>
+                    <Input name='passport_vendor' placeholder="Название органа выдавшего паспорт"/>
                 </label>
                 <label className="register__blockInput">
                     <span className="register__blockInput__title">Код подразделения</span>
-                    <Input name='codePassport' placeholder="000-000"/>
+                    <Input name='passport_code' placeholder="000-000"/>
                 </label>
                 <h2 className="register__title">Водительское удостоверение</h2>
                 <label className="register__blockInput">
                     <span className="register__blockInput__title">Серия и номер</span>
-                    <Input name='numLicence' placeholder="0000 000000"/>
+                    <Input name='licence_number' placeholder="0000 000000"/>
                 </label>
                 <label className="register__blockInput">
                     <span className="register__blockInput__title">Дата выдачи</span>
-                    <DatePicker className="datePicker" selected={dateLicence} onChange={date => dispatch(setUserData({dateLicence: date}))}/>
+                    <DatePicker className="datePicker" selected={licence_date} onChange={date => dispatch(setUserData({licence_date: date}))}/>
                     <img src={calendarIcon} className="calendarIcon"/>
                 </label>
                 <h2 className="register__title">Пароль</h2>
@@ -124,16 +124,16 @@ export const Register = () => {
                 <button
                     onClick={nextHandler}
                     disabled={
-                        birthDate === ''
-                        || datePassport === ''
-                        || dateLicence === ''
+                        birth_date === ''
+                        || passport_date === ''
+                        || licence_date === ''
                         || name === ''
                         || mail === ''
                         || phone === ''
-                        || numPassport === ''
-                        || orgPassport === ''
-                        || codePassport === ''
-                        || numLicence === ''
+                        || passport_number === ''
+                        || passport_vendor === ''
+                        || passport_code === ''
+                        || licence_number === ''
                         || password === ''
                         || repeatPassword === ''
                     }

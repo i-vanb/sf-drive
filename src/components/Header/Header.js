@@ -39,7 +39,7 @@ const Header = props => {
             }
             </nav>
             {/*<img src={`data:${photo.mimetype};base64,${Buffer.from(photo.buffer).toString('base64')}`} />*/}
-            {isAuth && user.avatar && <div className="avatar-wrapper"><img src={`data:${user.avatar[0].mimetype};base64,${Buffer.from(user.avatar[0].buffer).toString('base64')}`} className="user-avatar" /></div>}
+            {isAuth && user.avatar && !!user.avatar.length && <div className="avatar-wrapper"><img src={`data:${user.avatar[0].mimetype};base64,${Buffer.from(user.avatar[0].buffer).toString('base64')}`} className="user-avatar" /></div>}
             {isAuth
                 ? <button onClick={signOutHandler}
                           className="header__authBtn is-animated is-desktop">Выйти</button>

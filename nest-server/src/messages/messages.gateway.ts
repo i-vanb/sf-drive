@@ -1,9 +1,21 @@
 import { SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
 
-@WebSocketGateway()
+
+const SocketMap = new Map()
+
+@WebSocketGateway(3001, { cors: true })
 export class MessagesGateway {
-  @SubscribeMessage('message')
-  handleMessage(client: any, payload: any): string {
-    return 'Hello world!';
+  @SubscribeMessage('connection')
+  handleConnection(client:any, payload) {
+    SocketMap.set(payload, client)
+    // console.log(SocketMap)
+  }
+
+  @SubscribeMessage('messageToServer')
+  handleMessage(client:any, payload: any) {
+    // console.log(payload)
+    const cl = SocketMap.get(payload.id)
+    cl.emit(`messageToClient`, payload.message)
+    // client.emit('messageToClient', `ECho ${payload} from ${client}`)
   }
 }

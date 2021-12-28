@@ -3,6 +3,7 @@ import {fetchData} from "../../api";
 import {setLoading} from "./system";
 import {getCars} from "./cars";
 import {getUser, getUserCars, removeUser} from "./user";
+import {initSocket} from "../../utils/socket-client";
 
 
 export const login = (mail, password) => async dispatch => {
@@ -21,9 +22,7 @@ export const login = (mail, password) => async dispatch => {
     } else {
         dispatch(setSignUpError(res.data.message))
     }
-
 }
-
 
 export const logout = () => dispatch => {
     resetTokenPair();
@@ -32,6 +31,8 @@ export const logout = () => dispatch => {
 }
 
 export const setAuthorized = (isAuth = true, user) => dispatch => {
+    // console.log('auth', user)
+    // if(isAuth) initSocket({id: user.userID, dispatch})
     dispatch({type: SET_AUTHORIZED, payload: {isAuthorized: isAuth, ...user}})
 }
 
@@ -81,7 +82,6 @@ export const refreshMe = () => async dispatch => {
             dispatch
         })
         if(userDataRes.status === 201 || res.status === 200) {
-            // console.log(userDataRes)
             const user = userDataRes.data
             dispatch(setAuthorized(true, user));
             dispatch(getUser(user.userID))

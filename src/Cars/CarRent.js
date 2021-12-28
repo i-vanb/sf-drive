@@ -23,7 +23,7 @@ const CarRent = props => {
     })
 
     const [isSuccess,setIsSuccess] = useState(false)
-    const {state, drive, auth, booking, toggleDriveOption, getNewCurrentBooking, updateCurrentBooking,
+    const {state, drive, auth, ws, booking, toggleDriveOption, getNewCurrentBooking, updateCurrentBooking,
         createBooking} = props
     const {childrenSeatPrice, carDeliveryPrice, freePlacePrice, price, price_3d, price_5d} = state
     const {isChildrenSeat, isCarDelivery, isFreePlace} = drive
@@ -127,7 +127,7 @@ const CarRent = props => {
             mark: state.mark,
             model: state.model,
             year: state.year
-        })
+        }, ws)
         setIsSuccess(true)
     }
 
@@ -261,7 +261,7 @@ const CarRent = props => {
 
 
 const mapStateToProps = state => ({
-    state: state.car, drive: state.drive.current, booking: state.booking.current, auth: state.auth
+    state: state.car, drive: state.drive.current, booking: state.booking.current, auth: state.auth, ws: state.system.ws
 })
 
 const mapDispatchToProps = {

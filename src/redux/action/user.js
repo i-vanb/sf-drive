@@ -45,7 +45,7 @@ export const getUser = id => async dispatch => {
     } else {}
 }
 
-const getUserAvatar = async id => {
+export const getUserAvatar = async id => {
     const res = await fetchData({
         method: "get",
         url: `http://localhost:8000/file/${id}`

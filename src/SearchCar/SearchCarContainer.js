@@ -45,7 +45,7 @@ const SearchCarContainer = props => {
     return(
         <>
             <SearchCar onSearch={filterHandler}/>
-            <CarsList city={state.city} onDetail={onDetailHandler}/>
+            <CarsList city={state.city} onDetail={onDetailHandler} auth={props.state}/>
             <Footer/>
         </>
     )
@@ -58,7 +58,7 @@ const mapStateToProps = state => ({
 // export default connect(mapStateToProps, {})(SearchCarContainer)
 export default compose(withRouter, connect(mapStateToProps, {}))(SearchCarContainer)
 
-export const CarsList = ({city, onDetail}) => {
+export const CarsList = ({city, onDetail, auth}) => {
     const {loading, data} = useQuery(FETCH_CARS_BY_CITY_QUERY, {
         variables: {city}
     })
@@ -71,7 +71,12 @@ export const CarsList = ({city, onDetail}) => {
     return(
         <div className="cars">
             {/*{carList.map(car => <a key={car.id} onClick={()=>onDetail(car)}><CarItem {...car} /></a>)}*/}
-            {!loading && Object.values(data)[0].map((car, index) => <a key={index} onClick={()=>onDetail(car)}><CarItem {...car} /></a>)}
+            {!loading && Object.values(data)[0].map((car, index) => {
+                if(auth.userID == car.ownerId) return null
+                return(
+                    <a key={index} onClick={() => onDetail(car)}><CarItem {...car} /></a>
+                )
+            })}
         </div>
     )
 }

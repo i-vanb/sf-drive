@@ -1,21 +1,11 @@
-import {GET_WEBSOCKET, RESET_LOADING, SET_LOADING} from "../reducer/system";
 import socketIOClient from "socket.io-client";
-import {getNewMessage, getNotification} from "./message";
-
-export const setLoading = () => ({type: SET_LOADING})
-export const resetLoading = () => ({type: RESET_LOADING})
-
-export const getWebSocket = (id) => async dispatch => {
-    const socket = socketIOClient('ws://localhost:3001', {test: `test_${id}`});
-    socket.on('connect', () => {
-        // console.log(socket.id)
-        socket.emit('connection', id)
-    })
+import {GET_NOTIFICATION} from "../redux/reducer/message";
+import {getNewMessage, getNotification} from "../redux/action/message";
 
 
-    // socket onclose reopen here
-
-    socket.on(`messageToClient`, data => {
+export const initSocket = async ({id, dispatch}) => {
+    const socket = socketIOClient('ws://localhost:3001');
+    socket.on(`messageToClient_${id}`, data => {
         // socket.on(`messageToClient`, data => {
         // получаю сообщение - и нужно его доюавить в список сообщений в ридаксе и в локлсторе для
         // обозначения как непрочитанное
@@ -26,6 +16,6 @@ export const getWebSocket = (id) => async dispatch => {
         dispatch(getNotification(data))
         dispatch(getNewMessage(data))
     });
-    dispatch({type: GET_WEBSOCKET, payload: socket})
+    // socket.emit('messageToServer', {id, message: {text: 'test text'}})
+    // socket.emit('messageToServer', 'Hi you')
 }
-
