@@ -13,9 +13,8 @@ export class MessagesGateway {
 
   @SubscribeMessage('messageToServer')
   handleMessage(client:any, payload: any) {
-    // console.log(payload)
     const cl = SocketMap.get(payload.id)
-    cl.emit(`messageToClient`, payload.message)
+    cl && cl.emit(`messageToClient`, payload.message)
     // client.emit('messageToClient', `ECho ${payload} from ${client}`)
   }
 }

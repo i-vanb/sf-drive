@@ -5,7 +5,7 @@ export class BookingEntity {
     constructor(
         passengerID, carID, ownerID, begin, end, duration, description, totalPrice, isCarDelivery,
         carDeliveryPrice, isChildSeat, childSeatPrice, isAnyPlaceEnd, anyPlaceEndPrice, isArchived,
-        mark, model, year
+        mark, model, year, expires_in, is_payed
     ) {
         this.passengerID = passengerID
         this.carID = carID
@@ -25,6 +25,8 @@ export class BookingEntity {
         this.mark = mark
         this.model = model
         this.year = year
+        this.expires_in = expires_in
+        this.is_payed = is_payed
 
     }
 
@@ -84,4 +86,10 @@ export class BookingEntity {
 
     @Column()
     year: number
+
+    @Column()
+    expires_in: string
+
+    @Column()
+    is_payed: boolean
 }

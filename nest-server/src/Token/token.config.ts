@@ -4,6 +4,9 @@ export const REFRESH_TOKEN_SECRET = 'lcw8QwLyVMf389fO302dWjdwowKweoBid';
 export const REFRESH_TOKEN_LIFE = 2592000 //-месяц  //86400 - сутки;
 export const TEMP_TOKEN_SECRET = "sicu8e7rvboisvnilha8v7abywfv8e7uincw"
 
+export const PAYMENT_TOKEN_SECRET = "ionknciuh98ffew983in9pib22v3xv7vy32iu5"
+export const PAYMENT_TOKEN_LIFE = 1800
+
 export const CODE_FOR_RECOVERY_TOKEN_SECRET = 'nkaco87wevkbroq';
 export const RECOVERY_TOKEN_SECRET = 'nkacosdcdcssdc87wevkbroq';
 export const MINIMAL_SECONDS_LEFT = 60;

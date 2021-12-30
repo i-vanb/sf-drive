@@ -1,8 +1,31 @@
 .calendar{
     display: flex;
     flex-direction: row;
-
+    position: relative;
 }
+.calendar__prev-btn{
+    padding: 10px;
+    position: absolute;
+    left: -10px;
+    top: 150px;
+    font-family: monospace, monospace;
+    color: #61A199;
+    cursor: pointer;
+}
+.calendar__next-btn{
+    padding: 10px;
+    position: absolute;
+    right: -10px;
+    top: 150px;
+    font-family: monospace, monospace;
+    color: #61A199;
+    cursor: pointer;
+}
+.calendar__prev-btn:hover,
+.calendar__next-btn:hover{
+    text-shadow: 0 0 3px #61A199;
+}
+
 .calendar__container{
     flex: 1;
     margin: 0 60px;

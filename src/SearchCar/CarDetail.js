@@ -13,6 +13,7 @@ import {Review} from "../components/review/Review";
 import {toImg} from "../utils/toImg";
 import {toPriceView} from "../utils/toPriceView";
 import {setCurrentDrive} from "../redux/action/drive";
+import {getBusyDates,updateCurrentBooking} from "../redux/action/booking";
 
 const options = [
         {name: "isLosfix", label: "Крепления Iosfix", img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAxOCAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE0IDIuNUMxNCAzLjkgMTIuOSA1IDExLjUgNUMxMC4xIDUgOSAzLjkgOSAyLjVDOSAxLjEgMTAuMSAwIDExLjUgMEMxMi45IDAgMTQgMS4xIDE0IDIuNVpNMTIgNkgxMS4yQzkuMSA2IDcuMSA0LjggNi4xIDIuOUM2IDIuOCA1LjkgMi43IDUuOSAyLjZMNC4xIDMuNEM0LjYgNC44IDYuMiA2LjYgOC41IDcuNUw2LjcgMTIuNUwyLjggMTEuNEwwIDE2LjlMMiAxNy40TDMuOCAxMy44TDguMyAxNUM5LjMgMTUuMiAxMC4zIDE0LjcgMTAuNyAxMy44TDEzIDcuNEMxMy4yIDYuNyAxMi43IDYgMTIgNlpNMTUuOSA1TDEyLjUgMTQuNEMxMS45IDE2IDEwLjQgMTcgOC44IDE3QzguNSAxNyA4LjEgMTcgNy44IDE2LjlMNC45IDE2LjFMNCAxNy45TDYgMTguNEw3LjQgMTguOEM3LjkgMTguOSA4LjQgMTkgOC45IDE5QzExLjQgMTkgMTMuNiAxNy41IDE0LjUgMTUuMUwxOCA1SDE1LjlaIiBmaWxsPSIjNjFBMTk5Ii8+Cjwvc3ZnPgo="},
@@ -37,10 +38,12 @@ const CarDetail = props => {
         variables: {id: props.match.params.id}
     })
     const car = props.state
+    const busyDates = props.busyDates
 
     const [calendarState, setCalendarState] = useState(undefined)
     const begin = props.drive.current.begin
     const end = props.drive.current.end
+
 
     const setBegin = begin => props.setCurrentDrive({begin})
     const setEnd = end => props.setCurrentDrive({end})
@@ -71,6 +74,7 @@ const CarDetail = props => {
             props.setCar(data.findById)
             props.getFiles(data.findById.docs, 'doc')
             props.getFiles(data.findById.photos, 'photo')
+            props.getBusyDates(data.findById.id)
         }
         return () => {
             if(!props.history.location.pathname.match('/car/rent/')) {
@@ -175,7 +179,7 @@ const CarDetail = props => {
                     {/*<Calendar />*/}
                     <Calendar begin={begin} setBegin={setBegin}
                               end={end} setEnd={setEnd}
-                              state={calendarState} setState={setCalendarState}/>
+                              state={calendarState} setState={setCalendarState} busyDates={busyDates}/>
                     <div className="section-line"/>
                     <div className="collage_car__main__desc-title">
                         Отзывы
@@ -201,11 +205,11 @@ const CarDetail = props => {
 }
 
 const mapStateToProps = state => ({
-    state: state.car, drive: state.drive
+    state: state.car, drive: state.drive, booking: state.booking.current, busyDates: state.booking.busyDates
 })
 
 const mapDispatchToProps = {
-    setCar, getFiles, resetCar, setCurrentDrive
+    setCar, getFiles, resetCar, setCurrentDrive, getBusyDates, updateCurrentBooking
 }
 
 export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(CarDetail)

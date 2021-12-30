@@ -13,8 +13,10 @@ export interface Booking {
     childSeatPrice: number
     isAnyPlaceEnd: boolean
     anyPlaceEndPrice: number
-    isArchived: boolean,
+    isArchived: boolean
     mark: string
     model: string
     year: number
+    expires_in: string
+    is_payed: boolean
 }

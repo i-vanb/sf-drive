@@ -32,6 +32,7 @@ import CarDetail from "./SearchCar/CarDetail";
 import CarRent from "./Cars/CarRent";
 import {getNewMessage, getNotification} from "./redux/action/message";
 import {getWebSocket} from "./redux/action/system";
+import {Payment} from "./components/payment/Payment";
 
 function App() {
     const [isSignShow, setIsSignShow] = useState(false);
@@ -48,7 +49,7 @@ function App() {
     useEffect(()=>{
         if(user.isAuthorized) {
             dispatch(getWebSocket(user.userID))
-            console.log(user)
+            // console.log(user)
         }
     }, [user])
 
@@ -62,6 +63,9 @@ function App() {
                 <Switch>
                     <Route path="/bookings">
                         <BookingsContainer />
+                    </Route>
+                    <Route path="/payment">
+                        <Payment />
                     </Route>
                     <Route exact path="/cars">
                         <CarsContainer />

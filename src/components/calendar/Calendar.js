@@ -2,13 +2,14 @@ import React, {useEffect, useState} from "react";
 import './style.css'
 import {toCapitalize} from "../../utils/stringHelper";
 import {getCalendarArray} from "../../utils/date_utils";
+import * as buffer from "buffer";
 
 const getMonth = number => {
-    const months = ['январь', 'февраль', 'март', 'апрель', 'май', 'апрель', 'май', 'июнь', 'июль', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
+    const months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
     return months[number]
 }
 
-export const Calendar = ({begin, setBegin, end, setEnd, state, setState}) => {
+export const Calendar = ({begin, setBegin, end, setEnd, state, setState, busyDates}) => {
 
     const setActiveHandler = (year, month, date) => {
         const newDate = new Date(year, month, date)
@@ -27,23 +28,23 @@ export const Calendar = ({begin, setBegin, end, setEnd, state, setState}) => {
         }
     }
 
-    // useEffect(()=>{
-    //     if(!state) {
-    //         const now = new Date()
-    //         const year = now.getFullYear()
-    //         const month = now.getMonth()
-    //         const date = now.getDate()
-    //         const newState = {
-    //             current_month: month,
-    //             current_year: year,
-    //             next_month: month < 11 ? month+1 : 0,
-    //             next_year: month < 11 ? year : year+1,
-    //             prev_month: month > 0 ? month-1 : 11,
-    //             prev_year: month > 0 ? year : year-1
-    //         }
-    //         setState(newState)
-    //     }
-    // }, [])
+    useEffect(()=>{
+        if(begin && end) {
+            busyDates.map(i => {
+                const beginResMS = new Date(i.begin).getTime()
+                const endResMS = new Date(i.end).getTime()
+                const beginMS = new Date(begin).getTime()
+                const endMS = new Date(end).getTime()
+
+                // const day = new Date(year, month, number).getTime()
+                if(beginResMS >= beginMS && beginResMS <= endMS
+                    || endResMS >= beginMS && endResMS <= endMS) {
+                    setEnd(undefined)
+                    setBegin(undefined)
+                }
+            })
+        }
+    }, [begin, end])
 
     if(!state) return null
 
@@ -72,15 +73,17 @@ export const Calendar = ({begin, setBegin, end, setEnd, state, setState}) => {
 
     return(
         <div className="calendar">
-            <CalendarMonth month={state.current_month} year={state.current_year} setActive={setActiveHandler} begin={begin} end={end}/>
-            <CalendarMonth month={state.next_month} year={state.next_year} setActive={setActiveHandler} begin={begin} end={end}/>
+            <div className="calendar__prev-btn" onClick={prevMonth}>{"<"}</div>
+            <CalendarMonth month={state.current_month} year={state.current_year} setActive={setActiveHandler} begin={begin} end={end} busyDates={busyDates}/>
+            <CalendarMonth month={state.next_month} year={state.next_year} setActive={setActiveHandler} begin={begin} end={end} busyDates={busyDates}/>
+            <div className="calendar__next-btn" onClick={nextMonth}>{">"}</div>
         </div>
     )
 }
 
 
-const CalendarMonth = ({month, year, setActive, begin, end}) => {
-    const arrayCalendar = getCalendarArray(year, month)
+const CalendarMonth = ({month, year, setActive, begin, end, busyDates}) => {
+    const arrayCalendar = getCalendarArray(year, month, busyDates)
 
     const setActiveHandler = date => setActive(year, month, date)
 

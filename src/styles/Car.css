@@ -260,6 +260,7 @@ input:checked + .slider:before {
     display: block;
     background-color: #fafafa;
     box-shadow: 1px 1px 10px #aeaeae;
+    padding: 20px;
 }
 .input-locked{
     color: #4F4F4F;

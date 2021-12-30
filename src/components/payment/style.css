@@ -1,0 +1,81 @@
+.payment{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    align-items: center;
+    justify-content: center;
+}
+.payment__card{
+    position: relative;
+    margin-bottom: 150px;
+    margin-top: 50px;
+    height: 300px;
+    width: 472px;
+}
+.payment__card>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+.payment__card>div:first-child{
+    /*padding: 20px;*/
+    border-radius: 10px;
+    border: none;
+    z-index: 2;
+    background-color: #F2F3F4;
+    min-width: 472px;
+    min-height: 292px;
+    position: absolute;
+}
+.payment__card>div:last-child{
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    z-index: 1;
+    position: absolute;
+    bottom: -100px;
+    right: -50px;
+    left: 50px;
+    background-color: #E9EBED;
+    min-width: 472px;
+    min-height: 292px;
+
+}
+.payment__card__line{
+    display: flex;
+    flex-direction: row;
+}
+.payment__card__line:last-child:not(:first-child){
+    padding-bottom: 20px;
+}
+.payment__card__line__num{
+    flex: 2;
+}
+.payment__card__line__date{
+
+}
+.payment__card__line__cvv{
+    display: flex;
+    align-items: center;
+}
+.payment__card__line__cvv>span{
+    margin-right: 10px;
+}
+.payment__card__line>div{
+    width: 146px;
+    padding: 0 20px 20px;
+}
+.payment__card__line input{
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #E0E0E0;
+    height: 44px;
+    color: #828282;
+    font-size: 15px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.payment__card__line span{
+    font-weight: 400;
+    font-size: 14px;
+}

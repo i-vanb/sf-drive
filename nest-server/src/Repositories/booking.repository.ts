@@ -20,7 +20,8 @@ export class BookingRepository {
     }
 
     async findRide(id: number) {
-        return await this.bookingRepository.findByIds([id])[0]
+        const ride = await this.bookingRepository.findByIds([id])
+        return ride[0]
     }
 
     async findRides(query) {

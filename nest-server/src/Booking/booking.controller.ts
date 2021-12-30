@@ -1,10 +1,11 @@
-import {Body, Controller, Delete, Get, Param, Post, Query} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, Post, Query, Headers} from "@nestjs/common";
 import {BookingService} from "./booking.service";
 
 
 @Controller("booking")
 export class BookingController {
     constructor(private readonly bookingService: BookingService) {}
+
 
     @Post("create")
     create(@Body() booking) {
@@ -26,6 +27,16 @@ export class BookingController {
         return this.bookingService.update(ride)
     }
 
+    @Post("apply")
+    apply(@Body() body) {
+        return this.bookingService.applyBooking(body.id)
+    }
+    @Post("archive")
+    archive(@Body() body) {
+        return this.bookingService.archiveBooking(body.id)
+    }
+
+
     @Post("find")
     findById(@Body() body) {
         return this.bookingService.findById(body.id)
@@ -35,5 +46,12 @@ export class BookingController {
     removeCar(@Body() body) {
         return this.bookingService.removeBooking(body.id)
     }
+
+    @Get("check")
+    checkPaymentToken(@Headers() headers) {
+        return this.bookingService.checkPaymentToken(headers.paymenttoken)
+    }
+
+
 
 }

@@ -24,10 +24,11 @@ const CarRent = props => {
 
     const [isSuccess,setIsSuccess] = useState(false)
     const {state, drive, auth, ws, booking, toggleDriveOption, getNewCurrentBooking, updateCurrentBooking,
-        createBooking} = props
+        createBooking, busyDates} = props
     const {childrenSeatPrice, carDeliveryPrice, freePlacePrice, price, price_3d, price_5d} = state
     const {isChildrenSeat, isCarDelivery, isFreePlace} = drive
 
+    // console.log(booking)
 
     const getExtraOptionSum = () => {
         const seat = isChildrenSeat ? childrenSeatPrice || 1000 : 0
@@ -118,7 +119,7 @@ const CarRent = props => {
         // getNewCurrentBooking()
     }, [])
 
-    const getPayment = () => {
+    const getPayment = async () => {
         // updateCurrentBooking({totalPrice: totalPrice()})
         // пока нет платежей делаем следующее
         createBooking({
@@ -127,13 +128,14 @@ const CarRent = props => {
             mark: state.mark,
             model: state.model,
             year: state.year
-        }, ws)
-        setIsSuccess(true)
+        }, ws).then(res => props.history.push('/payment'))
+        // props.history.push('/payment')
+        // setIsSuccess(true)
     }
 
     if(!state.id && !state.photo_files) return null
 
-    if(isSuccess) return <CarRentSuccess goToMain={()=>props.history.push('/')} />
+    // if(isSuccess) return <CarRentSuccess goToMain={()=>props.history.push('/')} />
 
     return(
         <div className="">
@@ -150,20 +152,20 @@ const CarRent = props => {
                     <div className="drive-check__content">
                         <div className="drive-check__row">
                             <span>Стоймость аренды</span>
-                            <span>{priceTarif()} ₽</span>
+                            <span>{toPriceView(priceTarif())} ₽</span>
                         </div>
                         {priceTarif()<price &&
                             <div className="drive-check__row subtitle">
                                 <span>{booking.begin && booking.end && `${getDateMonth(booking.begin)} - ${getDateMonth(booking.end)}`}</span>
-                                <span className="old-price">{price} ₽</span>
+                                <span className="old-price">{toPriceView(price)} ₽</span>
                             </div>}
                         <div className="drive-check__row">
                             <span>Доп.услуги</span>
-                            <span>{getExtraOptionSum()} ₽</span>
+                            <span>{toPriceView(getExtraOptionSum())} ₽</span>
                         </div>
                         <div className="drive-check__row">
                             <span>Комиссия сервиса</span>
-                            <span>1000 ₽</span>
+                            <span>1 000 ₽</span>
                         </div>
                     </div>
                     <div className="drive-check__footer">
@@ -212,7 +214,7 @@ const CarRent = props => {
                         {isShowCalendar &&
                             <div className="calendar-modal">
                                 <Calendar begin={booking.begin} setBegin={setBegin}
-                                          end={booking.end} setEnd={setEnd}
+                                          end={booking.end} setEnd={setEnd} busyDates={busyDates}
                                           state={calendarState} setState={setCalendarState}/>
                             </div>}
                     </div>
@@ -261,7 +263,8 @@ const CarRent = props => {
 
 
 const mapStateToProps = state => ({
-    state: state.car, drive: state.drive.current, booking: state.booking.current, auth: state.auth, ws: state.system.ws
+    state: state.car, drive: state.drive.current, booking: state.booking.current, busyDates: state.booking.busyDates,
+    auth: state.auth, ws: state.system.ws
 })
 
 const mapDispatchToProps = {

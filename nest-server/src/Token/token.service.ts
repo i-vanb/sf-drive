@@ -3,7 +3,7 @@ import {TokenPair, TokenPayload} from "./token.interface";
 import {JwtService} from "@nestjs/jwt";
 import {
     ACCESS_TOKEN_LIFE, ACCESS_TOKEN_SECRET, MILLISECONDS_IN_SECONDS,
-    MINIMAL_SECONDS_LEFT,
+    MINIMAL_SECONDS_LEFT, PAYMENT_TOKEN_LIFE, PAYMENT_TOKEN_SECRET,
     REFRESH_TOKEN_LIFE,
     REFRESH_TOKEN_SECRET,
     TEMP_TOKEN_SECRET
@@ -24,6 +24,10 @@ export class TokenService {
 
     async createTemp(payload: TokenPayload):Promise<String> {
         return this.jwtService.sign(payload, {secret: TEMP_TOKEN_SECRET, expiresIn: 300})
+    }
+
+    async createPaymentToken(payload:any):Promise<String> {
+        return this.jwtService.sign(payload, {secret: PAYMENT_TOKEN_SECRET, expiresIn: PAYMENT_TOKEN_LIFE})
     }
 
     decodeToken(token: string) {
