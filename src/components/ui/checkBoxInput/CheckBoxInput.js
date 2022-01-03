@@ -1,5 +1,4 @@
 import React from 'react';
-import "./style.css"
 
 
 export const CheckBoxInput = ({isActive, setIsActive, title, desc, inputValue, setInputValue, placeholder, inputLock}) => {

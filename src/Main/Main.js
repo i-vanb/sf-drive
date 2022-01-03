@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/Main.css";
 import main_car_mob from "../img/main-car-mob.svg";
 import main_2 from "../img/main_2.svg";
 import main_3 from "../img/main_3.svg";
@@ -10,7 +9,9 @@ import percent from "../img/percent.svg";
 import money from "../img/money.svg";
 import toy_car from "../img/toy_car.svg";
 import Footer from "../components/Footer";
-import {NavLink} from "react-router-dom";
+import {Link} from "../utils/Link";
+import Image from "next/image";
+
 
 
 function MainUnAuth() {
@@ -18,7 +19,7 @@ function MainUnAuth() {
         <>
             <section className="main">
                 <div className="content-container">
-                    <img className="main_img_mob" src={main_car_mob} alt="main picture" />
+                    <span  className="main_img_mob" ><Image src={main_car_mob} alt="main picture" /></span>
                     <h1>Каршеринг в любой</h1>
                     <h1>точке России</h1>
                     <br/>
@@ -29,16 +30,16 @@ function MainUnAuth() {
                         и командировок.
                     </p>
                     <div className="register__main__header">
-                        <NavLink to="/register/1">
+                        <Link to="/register/1">
                             Зарегистрироваться
-                        </NavLink>
+                        </Link>
                     </div>
                 </div>
             </section>
             <section>
                 <div className="content-container row">
                     <div>
-                        <img src={main_2} alt="main picture" />
+                        <Image src={main_2} alt="main picture" />
                     </div>
                     <div className="desc">
                         <h2>Аренда напрямую
@@ -62,14 +63,14 @@ function MainUnAuth() {
                         </p>
                     </div>
                     <div>
-                        <img src={main_3} alt="main picture" />
+                        <Image src={main_3} alt="main picture" />
                     </div>
                 </div>
             </section>
             <section>
                 <div className="content-container row">
                     <div>
-                        <img src={main_4} alt="main picture" />
+                        <Image src={main_4} alt="main picture" />
                     </div>
                     <div className="desc">
                         <h2>Гарантия честной аренды
@@ -105,19 +106,19 @@ function MainUnAuth() {
                     <p>Чтобы он не простаивал — сдавайте его в аренду и зарабатывайте.</p>
                     <div className="circle_li__wrap">
                         <div className="circle_li__item_container">
-                            <span className="circle_li__item_img"><img src={birka}/></span>
+                            <span className="circle_li__item_img"><Image src={birka}/></span>
                             <span className="circle_li__item_text">Вы сами указываете цену</span>
                         </div>
                         <div className="circle_li__item_container">
-                            <span className="circle_li__item_img"><img src={dollar}/></span>
+                            <span className="circle_li__item_img"><Image src={dollar}/></span>
                             <span className="circle_li__item_text">Мы страхуем автомобили</span>
                         </div>
                         <div className="circle_li__item_container">
-                            <span className="circle_li__item_img"><img src={percent}/></span>
+                            <span className="circle_li__item_img"><Image src={percent}/></span>
                             <span className="circle_li__item_text">Наша комиссия всего 3%</span>
                         </div>
                         <div className="circle_li__item_container">
-                            <span className="circle_li__item_img"><img src={money}/></span>
+                            <span className="circle_li__item_img"><Image src={money}/></span>
                             <span className="circle_li__item_text">Выплаты каждую неделю</span>
                         </div>
                         {/*<div className="dashed-border-div"></div>*/}
@@ -132,11 +133,11 @@ function MainUnAuth() {
             </section>
             <section>
                 <div className="content-container">
-                    <img src={toy_car}/>
+                    <Image src={toy_car}/>
                     <h2>Попробуйте аренду на себе</h2>
-                    <NavLink to="/register/1" className="register__main__below">
+                    <Link to="/register/1" className="register__main__below">
                         Зарегистрироваться
-                    </NavLink>
+                    </Link>
                 </div>
             </section>
             <Footer />

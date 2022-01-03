@@ -2,18 +2,18 @@ import {Switch, Route, useHistory} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 
-import "./styles/MobileMenu.css"
-import "./styles/Header.css"
-import "./styles/App.css";
-import "./styles/Normalize.css";
-import "./styles/Footer.css"
-import "./styles/Register.css"
-import "./styles/Searching.css"
-import "./styles/Sign.css"
-import "./styles/Header.css"
-import "./styles/About.css"
-import "./styles/Car.css"
-import "./styles/camera.css"
+// import "./styles/MobileMenu.css"
+// import "./styles/Header.css"
+// import "./styles/App.css";
+// import "./styles/Normalize.css";
+// import "./styles/Footer.css"
+// import "./styles/Register.css"
+// import "./styles/Searching.css"
+// import "./styles/Sign.css"
+// import "./styles/Header.css"
+// import "./styles/About.css"
+// import "./styles/Car.css"
+// import "./styles/camera.css"
 
 import About from "./About/About";
 import Faq from "./Faq/Faq";
@@ -53,12 +53,14 @@ function App() {
         }
     }, [user])
 
+
+    return null
+
     return (
         <>
             <Header showSignHandler={setIsSignShow}/>
             {isSignShow && !isAuth ? <Sign showSignHandler={setIsSignShow}/> : null}
-            {
-                isAuth
+            {isAuth
                 ?
                 <Switch>
                     <Route path="/bookings">

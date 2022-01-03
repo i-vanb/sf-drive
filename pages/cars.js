@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
-import icon from "../img/undraw_electric_car.svg";
-import {NavLink} from "react-router-dom";
-import {getUserCars} from "../redux/action/user";
-import {withNoAuth} from "../withAuth/withAuth";
+import icon from "../src/img/undraw_electric_car.svg";
+import {Link} from "../src/utils/Link";
+import {getUserCars} from "../src/redux/action/user";
+import {withNoAuth} from "../src/withAuth/withAuth";
 
 
-export const CarsContainer = props => {
+export const Cars = props => {
     const {auth, user} = props
 
     useEffect(()=>{}, [])
@@ -40,16 +40,16 @@ export const CarsContainer = props => {
                     <>
                         <img src={icon}/>
                         <h2>
-                        Зарабатывайте на своём
-                        автомобиле
+                            Зарабатывайте на своём
+                            автомобиле
                         </h2>
                         <p>Сдавайте автомобиль в аренду и получайте заработок.</p>
                     </>
                 }
                 <div className="car__footer">
-                    <NavLink to="/car/create">
+                    <Link to="/car/create">
                         Добавить автомобиль
-                    </NavLink>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -62,4 +62,4 @@ const mapStateToProps = state => ({
     user: state.user
 })
 
-export default ()=>withNoAuth(connect(mapStateToProps, {getUserCars})(CarsContainer))
+export default ()=>withNoAuth(connect(mapStateToProps, {getUserCars})(Cars))

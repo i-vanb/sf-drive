@@ -2,15 +2,18 @@ import React, {useEffect, useState} from "react"
 import sign_draw from "../img/sign_in_draw.svg"
 import closeIcon from "../img/close-icon.png"
 
-import {Link, useHistory} from "react-router-dom";
+// import {Link, useHistory} from "react-router-dom";
+import {Link} from '../utils/Link'
+import {useRouter} from 'next/router'
 import {Recovery} from "./Recovery";
 import {useDispatch, useSelector} from "react-redux";
 import {login, setSignUpError} from "../redux/action/auth";
 import Loader from "react-loader-spinner";
+import Image from 'next/image'
 
 
 export const Sign = props => {
-    const history = useHistory();
+    const history = useRouter();
     const {showSignHandler} = props;
     const [mail, setMail] = useState('');
     const [psw, setPsw] = useState('');
@@ -73,9 +76,9 @@ export const Sign = props => {
         <div className="modal">
             <div className="sign__container">
                 <button className="close-icon btn-opacity" onClick={() => showSignHandler(false)}>
-                    <img src={closeIcon}/>
+                    <Image src={closeIcon}/>
                 </button>
-                <img className="draw-image" src={sign_draw}/>
+                <span className="draw-image"><Image src={sign_draw}/></span>
                 <h2>Авторизация</h2>
                 <form className="sign__form">
                     {authError &&

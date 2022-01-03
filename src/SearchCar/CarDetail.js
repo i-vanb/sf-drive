@@ -33,7 +33,7 @@ const options = [
     ]
 
 
-const CarDetail = props => {
+export const CarDetail = props => {
     const {loading, data} = useQuery(FETCH_CAR_BY_ID_QUERY, {
         variables: {id: props.match.params.id}
     })

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import './style.css'
+// import './style.css'
 import {toCapitalize} from "../../utils/stringHelper";
 import {getCalendarArray} from "../../utils/date_utils";
 import * as buffer from "buffer";

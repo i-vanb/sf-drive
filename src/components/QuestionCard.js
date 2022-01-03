@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import "../styles/Faq.css";
+import Image from 'next/image'
+// import "../styles/Faq.css";
 import arrowUp from "../img/arrow-up.svg";
 import arrowDown from "../img/arrow-down.svg";
 
@@ -19,8 +20,8 @@ function QuestionCard(props) {
                 type="button"
                 className="faq__collapsible">{question}
                 {isActive
-                    ? <img className="faq__collapsible_arrow" src={arrowUp}/>
-                    : <img className="faq__collapsible_arrow" src={arrowDown}/>
+                    ? <span className="faq__collapsible_arrow"><Image src={arrowUp}/></span>
+                    : <span className="faq__collapsible_arrow"><Image src={arrowDown}/></span>
                 }
             </button>
             {isActive &&

@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {connect, useDispatch, useSelector} from "react-redux";
-// import './style.css'
-import {getChats, getMessages, resetMessages, sendMessage} from "../redux/action/message";
-import {getUserAvatar} from "../redux/action/user";
+import {getChats, getMessages, resetMessages, sendMessage} from "../src/redux/action/message";
+import {getUserAvatar} from "../src/redux/action/user";
 import {useQuery} from "@apollo/client";
-import {FETCH_CAR_BY_ID_QUERY} from "../utils/graphql-request";
-import back from "../img/back.svg";
-import fileIcon from '../img/file-icon.png'
-import sendIcon from '../img/send-icon.png'
+import {FETCH_CAR_BY_ID_QUERY} from "../src/utils/graphql-request";
+import back from "../src/img/back.svg";
+import fileIcon from '../src/img/file-icon.png'
+import sendIcon from '../src/img/send-icon.png'
+import {withNoAuth} from "../src/withAuth/withAuth";
+import Image from 'next/image'
 
 
 const MessagesContainer = (props) => {
@@ -40,7 +41,7 @@ const mapStateToProps = state => ({
     notification: state.message.notification
 })
 
-export default connect(mapStateToProps, {getChats,sendMessage})(MessagesContainer)
+export default ()=>withNoAuth(connect(mapStateToProps, {getChats,sendMessage})(MessagesContainer))
 
 
 const ItemMessage = (props) => {
@@ -131,7 +132,7 @@ const Chat = props => {
         <div>
             <div className="register__header chat__wrapper">
                 <div className="register__step-back" onClick={onBack}>
-                    <img src={back}/>
+                    <Image src={back}/>
                     <span>Назад</span>
                 </div>
                 <div className="register__header__pageNumber">{name}</div>
@@ -145,8 +146,8 @@ const Chat = props => {
                                 <div key={i.id} className={`message__wrapper${i.me ? ' my-message' : ''}`}>
                                     {!i.me && <div className="ava">
                                         {ava.length>0 ? <img
-                                            src={`data:${ava[0].mimetype};base64,${Buffer.from(ava[0].buffer).toString('base64')}`}/>
-                                        :<span className="no-photo" style={{padding: 0, margin: "-2px"}} />
+                                                src={`data:${ava[0].mimetype};base64,${Buffer.from(ava[0].buffer).toString('base64')}`}/>
+                                            :<span className="no-photo" style={{padding: 0, margin: "-2px"}} />
                                         }
                                     </div>
                                         // :<div className="ava">
@@ -166,9 +167,9 @@ const Chat = props => {
                                onChange={e=>setTextInput(e.target.value)} onKeyDown={onSendPress}
                         />
 
-                        <div className="file-icon"><img src={fileIcon} /></div>
+                        <div className="file-icon"><Image src={fileIcon} /></div>
 
-                        <div className="send-icon" onClick={onClickSendHandler}><img src={sendIcon} /></div>
+                        <div className="send-icon" onClick={onClickSendHandler}><Image src={sendIcon} /></div>
                     </div>
                 </div>
                 {/*<h1 className="register__header__title">Загрузите документы</h1>*/}

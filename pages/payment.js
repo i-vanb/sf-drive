@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
 // import './style.css'
 import {useDispatch, useSelector} from "react-redux";
-import {applyBooking, checkPaymentToken} from "../../redux/action/booking";
-import {CarRentSuccess} from "../../Cars/CarRentSuccess";
-import {CarRentError} from "../../Cars/CarRentError";
+import {applyBooking, checkPaymentToken} from "../src/redux/action/booking";
+import {CarRentSuccess} from "../src/Cars/CarRentSuccess";
+import {CarRentError} from "../src/Cars/CarRentError";
 import {useHistory} from "react-router-dom";
+import {withNoAuth} from "../src/withAuth/withAuth";
+import {useRouter} from "next/router";
 
 
-export const Payment = () => {
+const Payment = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
+    const history = useRouter()
     const booking = useSelector(state => state.booking.current)
 // console.log(booking)
     const [num, setNum] = useState('')
@@ -100,3 +102,5 @@ export const Payment = () => {
         </div>
     )
 }
+
+export default ()=>withNoAuth(Payment)

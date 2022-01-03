@@ -1,27 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "./Header";
-import {connect} from "react-redux";
-// import {setAuthUserData} from "../../redux/reducer/auth";
+import {useSelector} from "react-redux";
+import {Sign} from "../../Register/Sign";
 
-class HeaderContainer extends React.Component {
 
-    async componentDidMount() {
-        // const response = await fetch('http://localhost:8000/auth/me', {
-        //     method: 'GET',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         mail, password: psw
-        //     })
-        // })
-    }
+export const HeaderContainer = props => {
+    const [isSignShow, setIsSignShow] = useState(false);
+    const isAuth = useSelector(state => state.auth.isAuthorized);
+    // const state = useSelector(state => state)
+    // console.log(state)
 
-    render() {
-        return <Header {...this.props} />
-    }
+    return (
+        <>
+            <Header showSignHandler={setIsSignShow}/>
+            {isSignShow && !isAuth ? <Sign showSignHandler={setIsSignShow}/> : null}
+        </>
+    )
 }
-
-
-// const mapStateToProps = state => ({})
-// export default connect(mapStateToProps, {setAuthUserData})(HeaderContainer);

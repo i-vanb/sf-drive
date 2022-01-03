@@ -1,8 +1,14 @@
 import React from "react";
-import reg_success from "../img/reg_success.svg";
+import reg_success from "../src/img/reg_success.svg";
 import "react-datepicker/dist/react-datepicker.css";
 
-export const CarSuccess = (props) => {
+import {useRouter} from "next/router";
+import {compose} from "redux";
+import {withNoAuth} from "../src/withAuth/withAuth";
+import {connect} from "react-redux";
+
+const RegSuccess = () => {
+    let history = useRouter()
     return (
         <main className="register">
             <section className="about">
@@ -13,7 +19,7 @@ export const CarSuccess = (props) => {
                         документов и начните пользоваться сервисом.</p>
                 </div>
                 <div className="register__success">
-                    <button onClick={props.goToMain}>Перейти на главную
+                    <button onClick={()=>history.push('/')}>Перейти на главную
                     </button>
                 </div>
             </section>
@@ -21,3 +27,5 @@ export const CarSuccess = (props) => {
     )
 }
 
+
+export default ()=>withNoAuth(RegSuccess)
