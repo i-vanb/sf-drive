@@ -139,5 +139,7 @@ export const getNewMessage = message => dispatch => {
     const unreadMessages = JSON.parse(localStorage.getItem('messages'))
     const newUnreadMessages = unreadMessages ? [...unreadMessages, message] : [message]
     localStorage.setItem('messages', JSON.stringify(newUnreadMessages))
-    dispatch({type: GET_NEW_MESSAGE, payload: newMessage})
+    dispatch(addMessage(newMessage))
+    // dispatch({type: GET_NEW_MESSAGE, payload: newMessage})
 }
+export const addMessage = message => ({type: GET_NEW_MESSAGE, payload: message})

@@ -45,7 +45,7 @@ const SearchCarContainer = props => {
     return(
         <>
             <SearchCar onSearch={filterHandler}/>
-            <CarsList city={state.city} onDetail={onDetailHandler} auth={props.state}/>
+            <CarsListWrapper city={state.city} onDetail={onDetailHandler} auth={props.state}/>
             <Footer/>
         </>
     )
@@ -55,30 +55,40 @@ const mapStateToProps = state => ({
     state: state.auth
 })
 
-// export default connect(mapStateToProps, {})(SearchCarContainer)
 export default compose(withRouter, connect(mapStateToProps, {}))(SearchCarContainer)
 
-export const CarsList = ({city, onDetail, auth}) => {
+export const CarsListWrapper = ({city, onDetail, auth}) => {
     const {loading, data} = useQuery(FETCH_CARS_BY_CITY_QUERY, {
         variables: {city}
     })
-    // return <div>kkkk</div>
-    // if(data) {
-    //     console.log('data', Object.values(data))
-    //     Object.values(data).map(i => console.log(i))
-    // }
 
+    if(loading) return null
+
+    return <CarMainList cars={Object.values(data)[0].filter(i => parseInt(i.ownerId) !== parseInt(auth.userID))}
+                        getDetails={onDetail} />
+
+
+    // return(
+    //     <div className="cars">
+    //         {!loading && Object.values(data)[0].map((car, index) => {
+    //             if(auth.userID == car.ownerId) return null
+    //             return(
+    //                 <a key={index} onClick={() => onDetail(car)}><CarItem {...car} /></a>
+    //             )
+    //         })}
+    //     </div>
+    // )
+}
+
+
+export const CarMainList = ({cars, getDetails}) => {
     return(
         <div className="cars">
-            {/*{carList.map(car => <a key={car.id} onClick={()=>onDetail(car)}><CarItem {...car} /></a>)}*/}
-            {!loading && Object.values(data)[0].map((car, index) => {
-                if(auth.userID == car.ownerId) return null
+            {cars.map((car, index) => {
                 return(
-                    <a key={index} onClick={() => onDetail(car)}><CarItem {...car} /></a>
+                    <a key={index} onClick={() => getDetails(car)}><CarItem {...car} /></a>
                 )
             })}
         </div>
     )
 }
-
-

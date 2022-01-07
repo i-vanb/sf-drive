@@ -11,8 +11,8 @@ export class CarsRepository {
         private carRepository: Repository<CarsEntity>
     ) {}
 
-    async createCar(car: CarsEntity) {
-        const newCar = await this.carRepository.create(car)
+    createCar(car: CarsEntity) {
+        const newCar = this.carRepository.create(car)
         return this.carRepository.save(newCar)
     }
 

@@ -30,11 +30,8 @@ export const logout = () => dispatch => {
     dispatch(removeUser())
 }
 
-export const setAuthorized = (isAuth = true, user) => dispatch => {
-    // console.log('auth', user)
-    // if(isAuth) initSocket({id: user.userID, dispatch})
-    dispatch({type: SET_AUTHORIZED, payload: {isAuthorized: isAuth, ...user}})
-}
+export const setAuthorized = (isAuth = true, user)  => ({type: SET_AUTHORIZED, payload: {isAuthorized: isAuth, ...user}})
+
 
 export const setSignUpError = error => ({type: SET_SIGN_UP_ERROR, payload: {error}})
 

@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Faq snapshot matching 1`] = `
+<Fragment>
+  <section
+    className="about"
+  >
+    <div
+      className="content-container"
+    >
+      <img
+        alt="image"
+        src="faq-image.svg"
+      />
+      <h1>
+        Частые вопросы
+      </h1>
+      <p
+        className="about__text"
+      >
+        Отвечаем на вопросы, которые у вас могут возникнуть.
+      </p>
+    </div>
+  </section>
+  <section
+    className="faq"
+  >
+    <div
+      className="content-container"
+    >
+      <QuestionCard
+        answer="Да, конечно, скорее всего, если это не будет проблемой..."
+        question="Могу ли я отменить бронь?"
+      />
+      <QuestionCard
+        answer="Да, если он не подошёл не более чем на два размера..."
+        question="Могу ли я вернуть деньги, если не подошёл автомобиль?"
+      />
+      <QuestionCard
+        answer="Надеяться, что автомобиль был застрахован..."
+        question="Что делать, если случилось ДТП?"
+      />
+      <QuestionCard
+        answer="Да, если это место - офис нашей компании..."
+        question="Могу ли я оставить автомобиль в удобном для меня месте?"
+      />
+      <QuestionCard
+        answer="Заплатить ему...и не говорить, откуда у вас его автомобиль..."
+        question="Что делать, если собственник просит заплатить ему напрямую?"
+      />
+      <QuestionCard
+        answer="Да, если не хотите катить его вручную..."
+        question="Должен ли я заправлять автомобиль?"
+      />
+    </div>
+  </section>
+  <Footer />
+</Fragment>
+`;

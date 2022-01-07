@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Booking snapshot matching 1`] = `
+<div
+  className="user-cars__item"
+>
+  <div
+    className="user-cars__item__photo"
+  >
+    <img
+      src="/cars/img/imgCar1.png"
+    />
+  </div>
+  <div
+    className="user-cars__item__desc"
+  >
+    <div
+      className="collage_car__main__reviews"
+      style={
+        Object {
+          "marginBottom": "10px",
+        }
+      }
+    >
+      <img
+        src="star.png"
+      />
+      <span>
+        4,5
+      </span>
+      <span>
+        (4)
+      </span>
+    </div>
+    <div>
+      <img
+        src="calendarIcon.png"
+      />
+    </div>
+    <div>
+       
+      , 
+    </div>
+    <div>
+       руб
+    </div>
+  </div>
+</div>
+`;

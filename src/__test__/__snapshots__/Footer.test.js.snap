@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`links snapshot matching 1`] = `
+<footer
+  className="footer"
+>
+  <p
+    className="footer__rights"
+  >
+    © SkillDrive Inc. 2020
+  </p>
+  <div
+    className="footer__socials"
+  >
+    <a
+      href=""
+      rel="nofollow"
+      target="_blank"
+    >
+      <img
+        alt="vkontakte link"
+        src="1.svg"
+      />
+    </a>
+    <a
+      href=""
+      rel="nofollow"
+      target="_blank"
+    >
+      <img
+        alt="instagram link"
+        src="2.svg"
+      />
+    </a>
+    <a
+      href=""
+      rel="nofollow"
+      target="_blank"
+    >
+      <img
+        alt="facebook link"
+        src="3.svg"
+      />
+    </a>
+  </div>
+</footer>
+`;

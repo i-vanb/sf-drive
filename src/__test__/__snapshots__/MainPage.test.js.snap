@@ -1,0 +1,301 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Car List snapshot matching 1`] = `
+<div
+  className="cars"
+>
+  <a
+    key="0"
+    onClick={[Function]}
+  >
+    <CarItem />
+  </a>
+</div>
+`;
+
+exports[`Unauthorized Main page snapshot matching 1`] = `
+<Fragment>
+  <section
+    className="main"
+  >
+    <div
+      className="content-container"
+    >
+      <img
+        alt="main picture"
+        className="main_img_mob"
+        src="main-car-mob.svg"
+      />
+      <h1>
+        Каршеринг в любой
+      </h1>
+      <h1>
+        точке России
+      </h1>
+      <br />
+      <p
+        className="main__text"
+      >
+        Будьте всегда за рулём во время путешествий
+      </p>
+      <p
+        className="main__text"
+      >
+        и командировок.
+      </p>
+      <div
+        className="register__main__header"
+      >
+        <NavLink
+          to="/register/1"
+        >
+          Зарегистрироваться
+        </NavLink>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div
+      className="content-container row"
+    >
+      <div>
+        <img
+          alt="main picture"
+          src="main_2.svg"
+        />
+      </div>
+      <div
+        className="desc"
+      >
+        <h2>
+          Аренда напрямую от владельцев
+        </h2>
+        <p>
+          Вы получите автомобиль от его собственника, а мы проверим юридическую чистоту и техническую исправность.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div
+      className="content-container row"
+    >
+      <div
+        className="desc"
+      >
+        <h2>
+          Автомобили на любой вкус
+        </h2>
+        <p>
+          Вы всегда можете подобрать автомобиль любого класса от бюджетных моделей до премиум-класса и спорткаров.
+        </p>
+      </div>
+      <div>
+        <img
+          alt="main picture"
+          src="main_3.svg"
+        />
+      </div>
+    </div>
+  </section>
+  <section>
+    <div
+      className="content-container row"
+    >
+      <div>
+        <img
+          alt="main picture"
+          src="main_4.svg"
+        />
+      </div>
+      <div
+        className="desc"
+      >
+        <h2>
+          Гарантия честной аренды
+        </h2>
+        <p>
+          Общение и оплата происходит через наш сервис, что предотвращает вас от обмана.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section
+    className="bg-gray"
+  >
+    <div
+      className="content-container"
+    >
+      <h2>
+        Как арендовать автомобиль
+      </h2>
+      <div
+        className="circle_li__wrap"
+      >
+        <div
+          className="circle_li__item_container"
+        >
+          <span
+            className="circle_li__item_img"
+          >
+            1
+          </span>
+          <span
+            className="circle_li__item_text"
+          >
+            Выберите автомобиль
+          </span>
+        </div>
+        <div
+          className="circle_li__item_container"
+        >
+          <span
+            className="circle_li__item_img"
+          >
+            2
+          </span>
+          <span
+            className="circle_li__item_text"
+          >
+            Забронируйте дату и время
+          </span>
+        </div>
+        <div
+          className="circle_li__item_container"
+        >
+          <span
+            className="circle_li__item_img"
+          >
+            3
+          </span>
+          <span
+            className="circle_li__item_text"
+          >
+            Получите автомобиль
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div
+      className="content-container"
+    >
+      <h2>
+        У вас есть автомобиль?
+      </h2>
+      <p>
+        Чтобы он не простаивал — сдавайте его в аренду и зарабатывайте.
+      </p>
+      <div
+        className="circle_li__wrap"
+      >
+        <div
+          className="circle_li__item_container"
+        >
+          <span
+            className="circle_li__item_img"
+          >
+            <img
+              src="birka.svg"
+            />
+          </span>
+          <span
+            className="circle_li__item_text"
+          >
+            Вы сами указываете цену
+          </span>
+        </div>
+        <div
+          className="circle_li__item_container"
+        >
+          <span
+            className="circle_li__item_img"
+          >
+            <img
+              src="dollar.svg"
+            />
+          </span>
+          <span
+            className="circle_li__item_text"
+          >
+            Мы страхуем автомобили
+          </span>
+        </div>
+        <div
+          className="circle_li__item_container"
+        >
+          <span
+            className="circle_li__item_img"
+          >
+            <img
+              src="percent.svg"
+            />
+          </span>
+          <span
+            className="circle_li__item_text"
+          >
+            Наша комиссия всего 3%
+          </span>
+        </div>
+        <div
+          className="circle_li__item_container"
+        >
+          <span
+            className="circle_li__item_img"
+          >
+            <img
+              src="money.svg"
+            />
+          </span>
+          <span
+            className="circle_li__item_text"
+          >
+            Выплаты каждую неделю
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    className="bg-gray"
+  >
+    <div
+      className="content-container"
+    >
+      <h2>
+        Отзывы клиентов
+      </h2>
+    </div>
+    <p
+      style={
+        Object {
+          "display": "block",
+          "textAlign": "center",
+        }
+      }
+    >
+      Пока что нет ни одного отзыва
+    </p>
+  </section>
+  <section>
+    <div
+      className="content-container"
+    >
+      <img
+        src="toy_car.svg"
+      />
+      <h2>
+        Попробуйте аренду на себе
+      </h2>
+      <NavLink
+        className="register__main__below"
+        to="/register/1"
+      >
+        Зарегистрироваться
+      </NavLink>
+    </div>
+  </section>
+  <Footer />
+</Fragment>
+`;

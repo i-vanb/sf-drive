@@ -9,7 +9,7 @@ import {fetchData} from "../../api";
 import {parse} from "graphql";
 
 export const updateCurrentBooking = update => ({type: UPDATE_CURRENT_BOOKING, payload: update})
-const getBookingList = list => ({type: GET_BOOKING_LIST, payload: list})
+export const getBookingList = list => ({type: GET_BOOKING_LIST, payload: list})
 const getCurrentBooking = booking => ({type: GET_BOOKING_LIST, payload: booking})
 export const removeCurrentBooking = () => ({type: REMOVE_CURRENT_BOOKING})
 export const getNewCurrentBooking = props => ({type: GET_NEW_CURRENT_BOOKING, payload: props})

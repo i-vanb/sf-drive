@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Route, Switch, Redirect} from "react-router-dom";
-import {CarCreteStep1} from "./CarCreteStep1";
+import CarCreteStep1 from "./CarCreteStep1";
 import {CarCreteStep2} from "./CarCreteStep2";
 import {CarCreteStep3} from "./CarCreteStep3";
 import {CarCreteStep4} from "./CarCreteStep4";
@@ -23,9 +23,7 @@ export const CarCreate = () => {
                     <Redirect to="/car/create/1"/>
                 </Route>
                 <Route path="/car/create/1">
-                    <CarCreteStep1
-
-                    />
+                    <CarCreteStep1 />
                 </Route>
                 <Route path="/car/create/2">
                     <CarCreteStep2

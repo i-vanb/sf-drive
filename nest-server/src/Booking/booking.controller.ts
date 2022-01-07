@@ -1,11 +1,9 @@
 import {Body, Controller, Delete, Get, Param, Post, Query, Headers} from "@nestjs/common";
 import {BookingService} from "./booking.service";
 
-
 @Controller("booking")
 export class BookingController {
     constructor(private readonly bookingService: BookingService) {}
-
 
     @Post("create")
     create(@Body() booking) {
@@ -36,7 +34,6 @@ export class BookingController {
         return this.bookingService.archiveBooking(body.id)
     }
 
-
     @Post("find")
     findById(@Body() body) {
         return this.bookingService.findById(body.id)
@@ -51,7 +48,4 @@ export class BookingController {
     checkPaymentToken(@Headers() headers) {
         return this.bookingService.checkPaymentToken(headers.paymenttoken)
     }
-
-
-
 }

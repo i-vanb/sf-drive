@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../styles/Main.css";
 import main_car_mob from "../img/main-car-mob.svg";
 import main_2 from "../img/main_2.svg";
