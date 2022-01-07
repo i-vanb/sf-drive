@@ -5,7 +5,7 @@ export const toPriceView = price => {
     for(let i = prevPrice.length; i > 0; i--) {
         newPrice = prevPrice[i-1]+newPrice
         count++
-        if(count%3===0) newPrice = " " + newPrice
+        if(count%3===0 && i!==1) newPrice = " " + newPrice
     }
     return newPrice
 }
